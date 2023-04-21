@@ -10,23 +10,22 @@ body {
     min-width: 100%;
     height: 100%;
     overflow: hidden;
+
+    font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
 }
 
 // fonts
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 //
 
 .wrapper {
-    // background: center / cover no-repeat;
-
     height: 100%;
     width: 100%;
 }
 .background {
-    // height: 100%;
-    // width: 100%;
-
     & > img {
         object-position: right;
         height: 100vh;
@@ -106,7 +105,7 @@ body {
 
         position: relative;
 
-        &>img {
+        & > img {
             height: 300px;
             position: absolute;
             top: -100px;
@@ -130,8 +129,33 @@ body {
 
     &__blocks--4 {
         height: 100%;
-        padding: 30px;
+        padding: 20px;
         grid-template-columns: repeat(5, 1fr);
+    }
+}
+.max-min {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    &__max {
+        font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        color: #fff;
+        padding-right: 5px;
+    }
+
+    &__min {
+        font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        color: #c2bff4;
+        padding-left: 5px;
     }
 }
 .block {
@@ -142,6 +166,15 @@ body {
         display: flex;
         justify-content: center;
         align-self: flex-end;
+
+        font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        color: #c2bff4;
+
+        & > img {
+            height: 100%;
+        }
     }
 
     .temp {
@@ -153,36 +186,29 @@ body {
         grid-template-rows: repeat(3, 1fr);
 
         &__number {
-            grid-column: 1 / 3;
+            grid-column: 2 / 3;
             grid-row: 1 / 3;
 
             display: flex;
             justify-content: center;
             align-items: center;
+
+            font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            font-size: 88px;
+            color: #fff;
+            letter-spacing: 5px;
         }
 
         &__name {
             grid-column: 3 / 4;
             grid-row: 1 / 2;
             text-align: start;
-        }
 
-        &__max {
-            grid-column: 1 / 2;
-            grid-row: 3 / 4;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        &__min {
-            grid-column: 2 / 3;
-            grid-row: 3 / 4;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: #dad8f7;
         }
     }
 
@@ -204,8 +230,8 @@ body {
     .subblock {
         display: grid;
         grid-template-columns: 1fr 2fr;
-
-        border-radius: 6px;
+        padding: 10px;
+        border-radius: 10px;
         background: rgba(102, 96, 200, 0.6);
 
         &__pic {
@@ -217,7 +243,7 @@ body {
             align-items: center;
 
             & > img {
-                height: 100px;
+                height: 60px;
             }
         }
 
@@ -228,6 +254,12 @@ body {
             display: flex;
             justify-content: start;
             align-items: end;
+
+            font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            letter-spacing: 1px;
+            color: #e7e6fb;
         }
 
         &__num {
@@ -237,6 +269,20 @@ body {
             display: flex;
             justify-content: start;
             align-items: start;
+
+            font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #e7e6fb;
+
+            & > span:nth-child(2) {
+                display: flex;
+
+                font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+                font-weight: 700;
+                font-size: 14px;
+                color: #dad8f7;
+            }
         }
     }
 
@@ -265,9 +311,6 @@ body {
     }
 
     &__day {
-    }
-
-    &__day--1 {
     }
 }
 .property {
@@ -299,14 +342,27 @@ body {
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
     &__text {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+
+        font-size: 18px;
+        letter-spacing: 1px;
+        color: #dad8f7;
+
+        margin: auto;
     }
 
     &__pic {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
         & > img {
             height: 100px;
         }
     }
 
     &__temp {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+        margin-left: 2px;
     }
 }
