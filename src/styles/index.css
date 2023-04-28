@@ -97,7 +97,7 @@ body {
 .card__blocks--1 > img {
   height: 300px;
   position: absolute;
-  top: -100px;
+  top: -120px;
   left: -100px;
 }
 .card__blocks--2 {
@@ -159,14 +159,14 @@ body {
 .block__city > img {
   height: 100%;
 }
-.block .temp {
+.block__temp {
   grid-column: 2/3;
-  grid-row: 3/5;
+  grid-row: 3/6;
   display: grid;
-  grid-template-columns: 1.5fr 1.5fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
-.block .temp__number {
+.block__temp .temp__number {
   grid-column: 2/3;
   grid-row: 1/3;
   display: flex;
@@ -178,10 +178,11 @@ body {
   color: #fff;
   letter-spacing: 5px;
 }
-.block .temp__name {
+.block__temp .temp__name {
   grid-column: 3/4;
   grid-row: 1/2;
-  text-align: start;
+  display: flex;
+  align-items: center;
   font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 24px;
