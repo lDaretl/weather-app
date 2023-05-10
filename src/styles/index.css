@@ -14,6 +14,7 @@ body {
   font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 16px;
+  color: #c2bff4;
 }
 
 .wrapper {
@@ -98,7 +99,7 @@ body {
   height: 300px;
   position: absolute;
   top: -120px;
-  left: -100px;
+  left: -120px;
 }
 .card__blocks--2 {
   height: 100%;
@@ -145,12 +146,21 @@ body {
 .block {
   text-align: center;
 }
-.block__city {
-  grid-column: 3/4;
+.block__day-name {
+  grid-column: 2/3;
   grid-row: 1/2;
   display: flex;
   justify-content: center;
   align-self: flex-end;
+  font-size: 28px;
+  padding-left: 40px;
+}
+.block__city {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-start;
   font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 16px;
@@ -159,9 +169,17 @@ body {
 .block__city > img {
   height: 100%;
 }
+.block__weather-description {
+  grid-column: 1/2;
+  grid-row: 2/4;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-size: 24px;
+}
 .block__temp {
   grid-column: 2/3;
-  grid-row: 3/6;
+  grid-row: 2/5;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -179,7 +197,7 @@ body {
   letter-spacing: 5px;
 }
 .block__temp .temp__name {
-  grid-column: 3/4;
+  grid-column: 3/span 1;
   grid-row: 1/2;
   display: flex;
   align-items: center;
@@ -187,6 +205,35 @@ body {
   font-weight: 700;
   font-size: 24px;
   color: #dad8f7;
+}
+.block__temp .temp__max-min {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+  padding-right: 15px;
+}
+.block__hours {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1/4;
+  grid-row: 4/7;
+}
+.block__hours .hours__cont {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.block__hours .hours__hour {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+.block__hours .hours__hour img {
+  height: 100px;
 }
 .block__wind {
   grid-column: 1/2;
@@ -216,6 +263,12 @@ body {
 }
 .block .subblock__pic > img {
   height: 60px;
+}
+.block .subblock__pic > img:first-child {
+  position: relative;
+}
+.block .subblock__pic > img:last-child {
+  position: absolute;
 }
 .block .subblock__text {
   grid-column: 2/3;

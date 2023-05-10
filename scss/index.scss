@@ -14,6 +14,7 @@ body {
     font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
     font-weight: 700;
     font-size: 16px;
+    color: #c2bff4;
 }
 
 // fonts
@@ -108,7 +109,7 @@ body {
             height: 300px;
             position: absolute;
             top: -120px;
-            left: -100px;
+            left: -120px;
         }
     }
 
@@ -159,12 +160,24 @@ body {
 }
 .block {
     text-align: center;
-    &__city {
-        grid-column: 3 / 4;
+
+    &__day-name {
+        grid-column: 2 / 3;
         grid-row: 1 / 2;
         display: flex;
         justify-content: center;
         align-self: flex-end;
+
+        font-size: 28px;
+        padding-left: 40px;
+    }
+
+    &__city {
+        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+        display: flex;
+        justify-content: flex-end;
+        align-self: flex-start;
 
         font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
         font-weight: 700;
@@ -176,9 +189,19 @@ body {
         }
     }
 
+    &__weather-description {
+        grid-column: 1 / 2;
+        grid-row: 2 / 4;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+
+        font-size: 24px;
+    }
+
     &__temp {
         grid-column: 2 / 3;
-        grid-row: 3 / 6;
+        grid-row: 2 / 5;
 
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -188,28 +211,69 @@ body {
             &__number {
                 grid-column: 2 / 3;
                 grid-row: 1 / 3;
-    
+
                 display: flex;
                 justify-content: center;
                 align-items: center;
-    
+
                 font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
                 font-weight: 700;
                 font-size: 88px;
                 color: #fff;
                 letter-spacing: 5px;
             }
-    
+
             &__name {
-                grid-column: 3 / 4;
+                grid-column: 3 / span 1;
                 grid-row: 1 / 2;
                 display: flex;
                 align-items: center;
-    
+
                 font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
                 font-weight: 700;
                 font-size: 24px;
                 color: #dad8f7;
+            }
+            &__max-min {
+                grid-column: 2 / 3;
+                grid-row: 3 / 4;
+                display: flex;
+                justify-content: end;
+                align-items: start;
+                padding-right: 15px;
+            }
+        }
+    }
+
+    &__hours {
+        display: flex;
+        
+        justify-content: center;
+        align-items: center;
+        grid-column: 1 / 4;
+        grid-row: 4 / 7 ;
+        .hours {
+            
+
+            &__cont {
+                display: flex;
+                justify-content: space-around;
+                width: 100%;
+            }
+
+            &__hour {
+                display: flex;
+                flex-direction: column;
+                
+                    display: flex;
+                    flex-direction: column;
+                    & img {
+                      height: 100px;  
+                    }
+            
+            }
+            .hour {
+
             }
         }
     }
@@ -246,6 +310,14 @@ body {
 
             & > img {
                 height: 60px;
+            }
+
+            & > img:first-child {
+                position: relative;
+            }
+
+            & > img:last-child {
+                position: absolute;
             }
         }
 

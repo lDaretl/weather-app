@@ -19,33 +19,52 @@
                         <div class="cards__item card cards__item--1">
                             <div class="card__blur">
                                 <div class="card__blocks block card__blocks--1">
-                                    <img src="assets/weather-icons/Cloud.png" alt="Weather Image">
+                                    <img src="assets/weather-icons/not-available.svg" alt="Weather Image" id="nowIcon">
+                                    <div class="block__day-name" id="dayName">
+                                        -
+                                    </div>
                                     <div class="block__city" id="cityNow">
                                         <img src="assets/icons/pin.png" alt="pin">
-                                        <span>City</span>
+                                        <span>-</span>
+                                    </div>
+                                    <div class="block__weather-description" id="weatherDescription">
+                                        -
                                     </div>
                                     <div class="block__temp temp">
                                         <div class="temp__number" id="currentTemp">-</div>
-                                        <div class="temp__name" id="">°C</div>
+                                        <div class="temp__name" id="">
+                                            °C
+                                        </div>
                                         <div class="temp__max-min max-min">
                                             <div class="max-min__max" id="maxTempDay">-</div>
                                             <div class="max-min__min" id="minTempDay">-</div>
                                         </div>
                                     </div>
+                                    <div class="block__hours hours">
+                                        <div class="hours__cont">
+                                            <div class="hours__hour hour" id="hour1"></div>
+                                            <div class="hours__hour hour" id="hour2"></div>
+                                            <div class="hours__hour hour" id="hour3"></div>
+                                            <div class="hours__hour hour" id="hour4"></div>
+                                            <div class="hours__hour hour" id="hour5"></div>
+                                        </div>
+                                    </div>
                                     <div class="block__wind subblock">
-                                        <div class="subblock__pic"><img src="assets/weather-icons/Wind.png" alt="">
+                                        <div class="subblock__pic"><img src="assets/weather-icons/wind.svg" alt="">
                                         </div>
                                         <div class="subblock__text"><span>Ветер</span></div>
                                         <div class="subblock__num" id="currentWind">-</div>
                                     </div>
                                     <div class="block__humidity subblock">
-                                        <div class="subblock__pic"><img src="assets/weather-icons/Umbrella.png" alt="">
+                                        <div class="subblock__pic"><img src="assets/weather-icons/humidity.svg" alt="">
                                         </div>
                                         <div class="subblock__text"><span>Осадки</span></div>
                                         <div class="subblock__num" id="rainPosib">-</div>
                                     </div>
                                     <div class="block__rain-posib subblock">
-                                        <div class="subblock__pic"><img src="assets/weather-icons/Hurricane.png" alt="">
+                                        <div class="subblock__pic">
+                                            <img src="assets/weather-icons/thermometer-glass.svg" alt="">
+                                            <img src="assets/weather-icons/pressure-high.svg" alt="">
                                         </div>
                                         <div class="subblock__text">Атм. давление<span></span></div>
                                         <div class="subblock__num" id="pressure">-</div>
@@ -82,7 +101,7 @@
                                 <div class="card__blocks block card__blocks--4">
                                     <div class="block__day day day--1">
                                         <div class="day__text">-</div>
-                                        <div class="day__pic"><img src="assets/weather-icons/Cloudy Day.png" alt="">
+                                        <div class="day__pic"><img src="" alt="" id="dayIcon1">
                                         </div>
                                         <div class="day__temp max-min">
                                             <div class="max-min__max">-</div>
@@ -91,7 +110,7 @@
                                     </div>
                                     <div class="block__day day day--2">
                                         <div class="day__text">-</div>
-                                        <div class="day__pic"><img src="assets/weather-icons/Cloudy Day.png" alt="">
+                                        <div class="day__pic"><img src="" alt="" id="dayIcon2">
                                         </div>
                                         <div class="day__temp max-min">
                                             <div class="max-min__max">-</div>
@@ -100,7 +119,7 @@
                                     </div>
                                     <div class="block__day day day--3">
                                         <div class="day__text">-</div>
-                                        <div class="day__pic"><img src="assets/weather-icons/Cloudy Day.png" alt="">
+                                        <div class="day__pic"><img src="" alt="" id="dayIcon3">
                                         </div>
                                         <div class="day__temp max-min">
                                             <div class="max-min__max">-</div>
@@ -109,7 +128,7 @@
                                     </div>
                                     <div class="block__day day day--4">
                                         <div class="day__text">-</div>
-                                        <div class="day__pic"><img src="assets/weather-icons/Cloudy Day.png" alt="">
+                                        <div class="day__pic"><img src="" alt="" id="dayIcon4">
                                         </div>
                                         <div class="day__temp max-min">
                                             <div class="max-min__max">-</div>
@@ -118,7 +137,7 @@
                                     </div>
                                     <div class="block__day day day--5">
                                         <div class="day__text">-</div>
-                                        <div class="day__pic"><img src="assets/weather-icons/Cloudy Day.png" alt="">
+                                        <div class="day__pic"><img src="" alt="" id="dayIcon5">
                                         </div>
                                         <div class="day__temp max-min">
                                             <div class="max-min__max">-</div>
