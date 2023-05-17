@@ -184,8 +184,33 @@ body {
         font-size: 16px;
         color: #c2bff4;
 
-        & > img {
-            height: 100%;
+        
+
+        
+    }
+
+    .city {
+        &__subblock {
+            display: flex;
+            transition: transform .2s ease-out;
+
+            & > img {
+                height: 100%;
+            }
+    
+            &:hover {
+                cursor: pointer;
+                //font-size: 20px;
+                transform: scale(1.2);
+            }
+        }
+
+        &__input {
+            
+        }
+
+        &__list {
+            
         }
     }
 
@@ -439,4 +464,8 @@ body {
         grid-row: 3 / 4;
         margin-left: 2px;
     }
+}
+
+.hide {
+    display: none;
 }

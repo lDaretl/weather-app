@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<link>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weather App</title>
-<link rel="stylesheet" href="styles/index.css">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles/css/index.css">
 </head>
 
 <body>
@@ -19,20 +19,25 @@
                         <div class="cards__item card cards__item--1">
                             <div class="card__blur">
                                 <div class="card__blocks block card__blocks--1">
-                                    <img src="assets/weather-icons/not-available.svg" alt="Weather Image" id="nowIcon">
+                                    <img src="assets/weather-icons/common/not-available.svg" alt="Weather Image" id="nowIcon">
                                     <div class="block__day-name" id="dayName">
                                         -
                                     </div>
-                                    <div class="block__city" id="cityNow">
-                                        <img src="assets/icons/pin.png" alt="pin">
-                                        <span>-</span>
+                                    <div class="block__city city">
+                                        <div class="city__subblock" id="cityNow">
+                                            <img src="assets/icons/pin.png" alt="pin" id="pinImg">
+                                            <span>-</span>
+                                        </div>
+                                        <form name="city" action="#" method="dialog"><input class="city__input hide" type="search"
+                                                id="cityInput" value="Москва" placeholder="Введите название города"></form>
+                                        <div class="city__list hide" id="cityList"></div>
                                     </div>
                                     <div class="block__weather-description" id="weatherDescription">
                                         -
                                     </div>
                                     <div class="block__temp temp">
                                         <div class="temp__number" id="currentTemp">-</div>
-                                        <div class="temp__name" id="">
+                                        <div class="temp__name">
                                             °C
                                         </div>
                                         <div class="temp__max-min max-min">
@@ -50,21 +55,21 @@
                                         </div>
                                     </div>
                                     <div class="block__wind subblock">
-                                        <div class="subblock__pic"><img src="assets/weather-icons/wind.svg" alt="">
+                                        <div class="subblock__pic"><img src="assets/weather-icons/common/wind.svg" alt="">
                                         </div>
                                         <div class="subblock__text"><span>Ветер</span></div>
                                         <div class="subblock__num" id="currentWind">-</div>
                                     </div>
                                     <div class="block__humidity subblock">
-                                        <div class="subblock__pic"><img src="assets/weather-icons/humidity.svg" alt="">
+                                        <div class="subblock__pic"><img src="assets/weather-icons/common/humidity.svg" alt="">
                                         </div>
                                         <div class="subblock__text"><span>Осадки</span></div>
                                         <div class="subblock__num" id="rainPosib">-</div>
                                     </div>
                                     <div class="block__rain-posib subblock">
                                         <div class="subblock__pic">
-                                            <img src="assets/weather-icons/thermometer-glass.svg" alt="">
-                                            <img src="assets/weather-icons/pressure-high.svg" alt="">
+                                            <img src="assets/weather-icons/common/thermometer-glass.svg" alt="">
+                                            <img src="assets/weather-icons/common/pressure-high.svg" alt="">
                                         </div>
                                         <div class="subblock__text">Атм. давление<span></span></div>
                                         <div class="subblock__num" id="pressure">-</div>
@@ -101,7 +106,8 @@
                                 <div class="card__blocks block card__blocks--4">
                                     <div class="block__day day day--1">
                                         <div class="day__text">-</div>
-                                        <div class="day__pic"><img src="" alt="" id="dayIcon1">
+                                        <div class="day__pic"><img src="assets/weather-icons/common/not-available.svg"
+                                                alt="Daily weather image" id="dayIcon1">
                                         </div>
                                         <div class="day__temp max-min">
                                             <div class="max-min__max">-</div>
@@ -110,7 +116,8 @@
                                     </div>
                                     <div class="block__day day day--2">
                                         <div class="day__text">-</div>
-                                        <div class="day__pic"><img src="" alt="" id="dayIcon2">
+                                        <div class="day__pic"><img src="assets/weather-icons/common/not-available.svg"
+                                                alt="Daily weather image" id="dayIcon2">
                                         </div>
                                         <div class="day__temp max-min">
                                             <div class="max-min__max">-</div>
@@ -119,7 +126,8 @@
                                     </div>
                                     <div class="block__day day day--3">
                                         <div class="day__text">-</div>
-                                        <div class="day__pic"><img src="" alt="" id="dayIcon3">
+                                        <div class="day__pic"><img src="assets/weather-icons/common/not-available.svg"
+                                                alt="Daily weather image" id="dayIcon3">
                                         </div>
                                         <div class="day__temp max-min">
                                             <div class="max-min__max">-</div>
@@ -128,7 +136,8 @@
                                     </div>
                                     <div class="block__day day day--4">
                                         <div class="day__text">-</div>
-                                        <div class="day__pic"><img src="" alt="" id="dayIcon4">
+                                        <div class="day__pic"><img src="assets/weather-icons/common/not-available.svg"
+                                                alt="Daily weather image" id="dayIcon4">
                                         </div>
                                         <div class="day__temp max-min">
                                             <div class="max-min__max">-</div>
@@ -137,7 +146,8 @@
                                     </div>
                                     <div class="block__day day day--5">
                                         <div class="day__text">-</div>
-                                        <div class="day__pic"><img src="" alt="" id="dayIcon5">
+                                        <div class="day__pic"><img src="assets/weather-icons/common/not-available.svg"
+                                                alt="Daily weather image" id="dayIcon5">
                                         </div>
                                         <div class="day__temp max-min">
                                             <div class="max-min__max">-</div>
@@ -152,7 +162,6 @@
             </div>
         </div>
     </div>
-    <script src="app/index.js"></script>
 </body>
 
 </html>

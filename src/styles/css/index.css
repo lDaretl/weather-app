@@ -166,8 +166,16 @@ body {
   font-size: 16px;
   color: #c2bff4;
 }
-.block__city > img {
+.block .city__subblock {
+  display: flex;
+  transition: transform 0.2s ease-out;
+}
+.block .city__subblock > img {
   height: 100%;
+}
+.block .city__subblock:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }
 .block__weather-description {
   grid-column: 1/2;
@@ -346,4 +354,8 @@ body {
   grid-column: 1/2;
   grid-row: 3/4;
   margin-left: 2px;
+}
+
+.hide {
+  display: none;
 }/*# sourceMappingURL=index.css.map */
