@@ -19,17 +19,20 @@
                         <div class="cards__item card cards__item--1">
                             <div class="card__blur">
                                 <div class="card__blocks block card__blocks--1">
-                                    <img src="assets/weather-icons/common/not-available.svg" alt="Weather Image" id="nowIcon">
+                                    <img src="assets/weather-icons/common/not-available.svg" alt="Weather Image"
+                                        id="nowIcon">
                                     <div class="block__day-name" id="dayName">
                                         -
                                     </div>
                                     <div class="block__city city">
                                         <div class="city__subblock" id="cityNow">
                                             <img src="assets/icons/pin.png" alt="pin" id="pinImg">
-                                            <span>-</span>
+                                            <div class="city__name" id="cityName">-</div>
                                         </div>
-                                        <form name="city" action="#" method="dialog"><input class="city__input hide" type="search"
-                                                id="cityInput" value="Москва" placeholder="Введите название города"></form>
+                                        <form name="city" id="cityBlock" class="hide">
+                                            <input class="city__input" type="search" id="cityInput" value="" placeholder="Название города...">
+                                            <button type="submit" title="get weather">Найти</button>
+                                        </form>
                                         <div class="city__list hide" id="cityList"></div>
                                     </div>
                                     <div class="block__weather-description" id="weatherDescription">
@@ -55,13 +58,15 @@
                                         </div>
                                     </div>
                                     <div class="block__wind subblock">
-                                        <div class="subblock__pic"><img src="assets/weather-icons/common/wind.svg" alt="">
+                                        <div class="subblock__pic"><img src="assets/weather-icons/common/wind.svg"
+                                                alt="">
                                         </div>
                                         <div class="subblock__text"><span>Ветер</span></div>
                                         <div class="subblock__num" id="currentWind">-</div>
                                     </div>
                                     <div class="block__humidity subblock">
-                                        <div class="subblock__pic"><img src="assets/weather-icons/common/humidity.svg" alt="">
+                                        <div class="subblock__pic"><img src="assets/weather-icons/common/humidity.svg"
+                                                alt="">
                                         </div>
                                         <div class="subblock__text"><span>Осадки</span></div>
                                         <div class="subblock__num" id="rainPosib">-</div>

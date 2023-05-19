@@ -22,13 +22,13 @@ module.exports = {
         rules: [
             {
                 test: /\.html$/,
-                use: ['html-loader']
+                use: ['html-loader'],
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                type: 'asset/resource',
                 generator: {
-                    filename: 'assets/styles/[name][ext]'
+                    filename: 'assets/styles/[name].[contenthash][ext]'
                 }
             },
             {

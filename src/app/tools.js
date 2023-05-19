@@ -1,5 +1,3 @@
-const cityNow = document.querySelector('#cityNow span')
-
 export function parseFullCityName(data) {
     return `${data.results[0].name}, ${(data.results[0].name === data.results[0].admin1) ? '' : data.results[0].admin1 + ', '}${data.results[0].country}`;
 }
@@ -13,13 +11,13 @@ export function displayShow(idEl) {
 }
 
 export function searchShow() {
-    displayShow(cityInput);
-    displayHide(cityNow);
+    displayShow(cityBlock);
+    displayHide(cityName);
     cityInput.focus()
 }
 
 export function searchHide() {
     cityInput.focus()
-    displayHide(cityInput);
-    displayShow(cityNow);
+    displayHide(cityBlock);
+    displayShow(cityName);
 }
