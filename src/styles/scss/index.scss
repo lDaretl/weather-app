@@ -84,7 +84,7 @@ body {
 
 .card {
     &__blur {
-        backdrop-filter: blur(10px);
+        //backdrop-filter: blur(10px);
         border-radius: 10px;
         height: 100%;
     }
@@ -183,20 +183,19 @@ body {
         font-weight: 700;
         font-size: 16px;
         color: #c2bff4;
-
-        
-
-        
     }
 
     .city {
-        &__subblock {
-            display: flex;
-            transition: transform .2s ease-out;
+        position: relative;
 
-            & > img {
+        & > img {
                 height: 100%;
             }
+
+        &__subblock {
+            
+            display: flex;
+            transition: transform .2s ease-out;
     
             &:hover {
                 cursor: pointer;
@@ -205,14 +204,29 @@ body {
             }
         }
 
+        &__list {
+        position: absolute;
+        top: 20px;
+        left: 2px;
+        background: #000;
+        z-index: 100;
+
+        
+    }
+
+    .list {
+        &__item {
+            width:max-content;
+            padding: 10px 0;
+        }
+    }
+
         &__input {
             
         }
-
-        &__list {
-            
-        }
     }
+
+    
 
     &__weather-description {
         grid-column: 1 / 2;

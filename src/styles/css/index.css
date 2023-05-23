@@ -78,8 +78,6 @@ body {
 }
 
 .card__blur {
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
   border-radius: 10px;
   height: 100%;
 }
@@ -166,16 +164,31 @@ body {
   font-size: 16px;
   color: #c2bff4;
 }
+.block .city {
+  position: relative;
+}
+.block .city > img {
+  height: 100%;
+}
 .block .city__subblock {
   display: flex;
   transition: transform 0.2s ease-out;
 }
-.block .city__subblock > img {
-  height: 100%;
-}
 .block .city__subblock:hover {
   cursor: pointer;
   transform: scale(1.2);
+}
+.block .city__list {
+  position: absolute;
+  top: 20px;
+  left: 2px;
+  background: #000;
+  z-index: 100;
+}
+.block .city .list__item {
+  width: -moz-max-content;
+  width: max-content;
+  padding: 10px 0;
 }
 .block__weather-description {
   grid-column: 1/2;

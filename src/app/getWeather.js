@@ -1,11 +1,11 @@
 // import
-import { weatherCodesRu, weatherCodesEn } from './dict/weatherCodes';
-import { daysOfTheWeekRu, daysOfTheWeekEn } from './dict/daysOfTheWeek';
-import { weatherIconsDay, weatherIconsNight } from './dict/weatherIcons';
+import { weatherCodesRu, weatherCodesEn } from './resource/weatherCodes';
+import { daysOfTheWeekRu, daysOfTheWeekEn } from './resource/daysOfTheWeek';
+import { weatherIconsDay, weatherIconsNight } from './resource/weatherIcons';
 
 // var
 const currentWind = document.getElementById('currentWind')
-const maxWindDay = document.getElementById('maxWindDay')
+//const maxWindDay = document.getElementById('maxWindDay')
 const currentTemp = document.getElementById('currentTemp')
 const maxTempDay = document.getElementById('maxTempDay')
 const minTempDay = document.getElementById('minTempDay')
@@ -21,6 +21,7 @@ export async function getWeather(coords, cityNames) {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            console.log(cityNames)
             function roundNum(prop) {
                 return Math.round(Number(prop))
             }
@@ -30,8 +31,7 @@ export async function getWeather(coords, cityNames) {
             }
 
             // 1st card
-            const cityName = cityNames[0]
-            const cityNameFull = cityNames[1]
+            const cityPartialName = `${cityNames[0]}, ${cityNames[1] ? cityNames[1] : cityNames[2]}`
             const propNow = data.current_weather
             const propDaily = data.daily
             const propHour = data.hourly
@@ -49,7 +49,7 @@ export async function getWeather(coords, cityNames) {
 
             const properties = new Object()
 
-            properties.city = cityName
+            properties.city = cityPartialName
             properties.currentWind = roundNum(propNow.windspeed)
             properties.currentTemp = addSign(roundNum(propNow.temperature))
             properties.maxTempDay = addSign(roundNum(propDaily.temperature_2m_max[0]))

@@ -25,15 +25,16 @@
                                         -
                                     </div>
                                     <div class="block__city city">
+                                        <img src="assets/icons/pin.png" alt="pin" id="pinImg">
                                         <div class="city__subblock" id="cityNow">
-                                            <img src="assets/icons/pin.png" alt="pin" id="pinImg">
                                             <div class="city__name" id="cityName">-</div>
+                                            <form name="city" id="cityBlock" class="hide">
+                                                <input class="city__input" type="search" id="cityInput" placeholder="Название города...">
+                                            </form>
                                         </div>
-                                        <form name="city" id="cityBlock" class="hide">
-                                            <input class="city__input" type="search" id="cityInput" value="" placeholder="Название города...">
-                                            <button type="submit" title="get weather">Найти</button>
-                                        </form>
-                                        <div class="city__list hide" id="cityList"></div>
+                                        <div class="city__list list hide" id="cityList">
+                                            <div class="list__item" id="listItem1"></div>
+                                        </div>
                                     </div>
                                     <div class="block__weather-description" id="weatherDescription">
                                         -
