@@ -11,24 +11,39 @@ export function displayShow(idEl) {
 }
 
 // show search
-export function displaySearchShow() {
+export function displayShowSearch() {
     displayShow(cityBlock);
     displayHide(cityName);
     cityInput.focus()
 }
 
+// show search & list of cities
+export function displayShowFullSearch() {
+    displayShowSearch()
+    displayShow(cityList)
+}
+
 // hide search
-export function displaySearchHide() {
+export function displayHideSearch() {
     cityInput.focus()
     displayHide(cityBlock);
     displayShow(cityName);
 }
 
+// hide search & list of cities
+export function displayHideFullSearch() {
+    displayHideSearch()
+    displayHide(cityList)
+}
 
-export function displayCities (arrData) {
-    return arrData.map((value, index) => {
-        const city = parseFullCityName(value);
-        console.log(city)
-        cityList.insertAdjacentHTML("beforeend", `<div class="list__item" id="listItem${index}">${city[0]}, ${city[1] ? city[1] + ', ' : ''}${city[2]}</div>`)
-    })
+// create list of cities
+export function displayCityList(arrData) {
+    if(arrData) {
+        return arrData.map((value, index) => {
+            if (value !== undefined) {
+                const city = parseFullCityName(value);
+                cityList.insertAdjacentHTML("beforeend", `<div class="list__item" id="itemCity${index}">${city[0]}, ${city[1] ? city[1] + ', ' : ''}${city[2]}</div>`)
+            }
+        })
+    }
 }

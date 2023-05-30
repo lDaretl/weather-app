@@ -1,6 +1,6 @@
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+//const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
@@ -29,6 +29,14 @@ module.exports = {
                 type: 'asset/resource',
                 generator: {
                     filename: 'assets/styles/[name].[contenthash][ext]'
+                }
+            },
+            {
+                test: /\.scss$/,
+                type: 'asset/resource',
+                use: ['sass-loader'],
+                generator: {
+                    filename: './assets/styles/[name].[contenthash].css'
                 }
             },
             {

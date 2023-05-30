@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <link rel="stylesheet" href="styles/css/index.css">
+    <link rel="stylesheet" href="./styles/scss/index.scss">
 </head>
 
 <body>
@@ -25,15 +25,15 @@
                                         -
                                     </div>
                                     <div class="block__city city">
-                                        <img src="assets/icons/pin.png" alt="pin" id="pinImg">
+                                        <img src="assets/icons/pin-static.gif" alt="pin" id="pinImg">
                                         <div class="city__subblock" id="cityNow">
-                                            <div class="city__name" id="cityName">-</div>
-                                            <form name="city" id="cityBlock" class="hide">
-                                                <input class="city__input" type="search" id="cityInput" placeholder="Название города...">
+                                            <div class="city__name" id="cityName"></div>
+                                            <form name="city" id="cityBlock" class="">
+                                                <input class="city__input" type="search" id="cityInput"
+                                                    placeholder="Название города...">
                                             </form>
                                         </div>
                                         <div class="city__list list hide" id="cityList">
-                                            <div class="list__item" id="listItem1"></div>
                                         </div>
                                     </div>
                                     <div class="block__weather-description" id="weatherDescription">
@@ -50,12 +50,42 @@
                                         </div>
                                     </div>
                                     <div class="block__hours hours">
-                                        <div class="hours__cont">
-                                            <div class="hours__hour hour" id="hour1"></div>
-                                            <div class="hours__hour hour" id="hour2"></div>
-                                            <div class="hours__hour hour" id="hour3"></div>
-                                            <div class="hours__hour hour" id="hour4"></div>
-                                            <div class="hours__hour hour" id="hour5"></div>
+                                        <div class="hours__cont" id="hours">
+                                            <div class="hours__hour hour" id="hour1">
+                                                <div class="hour__time"></div>
+                                                <div class="hour__img"><img
+                                                        src="assets/weather-icons/common/not-available.svg"
+                                                        alt="hourly weather image"></div>
+                                                <div class="hour__temp"></div>
+                                            </div>
+                                            <div class="hours__hour hour" id="hour2">
+                                                <div class="hour__time"></div>
+                                                <div class="hour__img"><img
+                                                        src="assets/weather-icons/common/not-available.svg"
+                                                        alt="hourly weather image"></div>
+                                                <div class="hour__temp"></div>
+                                            </div>
+                                            <div class="hours__hour hour" id="hour3">
+                                                <div class="hour__time"></div>
+                                                <div class="hour__img"><img
+                                                        src="assets/weather-icons/common/not-available.svg"
+                                                        alt="hourly weather image"></div>
+                                                <div class="hour__temp"></div>
+                                            </div>
+                                            <div class="hours__hour hour" id="hour4">
+                                                <div class="hour__time"></div>
+                                                <div class="hour__img"><img
+                                                        src="assets/weather-icons/common/not-available.svg"
+                                                        alt="hourly weather image"></div>
+                                                <div class="hour__temp"></div>
+                                            </div>
+                                            <div class="hours__hour hour" id="hour5">
+                                                <div class="hour__time"></div>
+                                                <div class="hour__img"><img
+                                                        src="assets/weather-icons/common/not-available.svg"
+                                                        alt="hourly weather image"></div>
+                                                <div class="hour__temp"></div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="block__wind subblock">

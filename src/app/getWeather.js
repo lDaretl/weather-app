@@ -20,8 +20,6 @@ export async function getWeather(coords, cityNames) {
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords[0]}&longitude=${coords[1]}&hourly=temperature_2m,apparent_temperature,precipitation_probability,rain,snowfall,weathercode,pressure_msl,windspeed_10m,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_hours,precipitation_probability_max,windspeed_10m_max&current_weather=true&windspeed_unit=ms&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-            console.log(cityNames)
             function roundNum(prop) {
                 return Math.round(Number(prop))
             }
@@ -38,10 +36,10 @@ export async function getWeather(coords, cityNames) {
             const weatherCodeNow = propNow.weathercode
             const date = new Date()
             const timeNow = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}T${String(date.getHours()).padStart(2, '0')}:00`
-            
+
             function isDay(prop) {
                 return prop ? weatherIconsDay : weatherIconsNight;
-            } 
+            }
 
             //const dateNow = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getDate()}`
             const currentIndex = propNow.time.indexOf(timeNow)
@@ -61,18 +59,17 @@ export async function getWeather(coords, cityNames) {
             properties.weatherDescription = weatherCodesRu[weatherCodeNow]
 
             function fillHours(hourIndex) {
-                for (let i = 1; i < 6; i++) {
-                    const item = document.getElementById(`hour${i}`);
-                    console.log(item.innerHTML)
-                    item.innerHTML = `<div class="hour__text">${new Date(propHour.time[hourIndex + (i - 1)]).getHours() + ':00'}</div>
-                                <div class="hour__img"><img src="./assets/images/${isDay(propHour.is_day)[propHour.weathercode[hourIndex + (i - 1)]]}.svg" alt="hourly weather image"></div>
-                                <div class="hour__temp">${addSign(roundNum(propHour.temperature_2m[hourIndex + (i - 1)]))}</div>`
+                const element = document.querySelector(`#hours`).children
+                for (let index in Object.keys(element)) {
+                    const item = element[index].children
+                    const time = hourIndex + (Number(index) + 1)
+                    item[0].innerText = `${new Date(propHour.time[time]).getHours() + ':00'}`
+                    item[1].children[0].src = `./assets/images/${isDay(propHour.is_day)[propHour.weathercode[time]]}.svg`
+                    item[2].innerText = `${addSign(roundNum(propHour.temperature_2m[time]))}`
                 }
             }
 
             fillHours(currentIndexHour)
-
-            //https://www.geonames.org/servlet/geonames?&srv=2&lat=58.625&lng=49.6875&north=58.63493019540103&east=49.72837686538698&south=58.615066981499126&west=49.64662313461305&maxRows=100&type=json&q=&P=1&A=1&V=1&T=1&L=1&R=1&S=1&H=1&U=1
 
             // 4th card
             const dayOfTheWeek = date.getDay()
@@ -124,10 +121,7 @@ export async function getWeather(coords, cityNames) {
             return properties
         })
         .then(prop => {
-            console.log(prop)
-            console.log(cityName.innerText)
             cityName.innerText = prop.city
-            console.log(cityName.innerText)
             currentTemp.innerHTML = prop.currentTemp
             maxTempDay.innerHTML = prop.maxTempDay + '°'
             minTempDay.innerHTML = prop.minTempDay + '°'
