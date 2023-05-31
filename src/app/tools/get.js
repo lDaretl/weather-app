@@ -2,9 +2,6 @@ import { parseCoordsFromCurrentPosition} from "./parse";
 import { getWeather } from "../getWeather";
 import { displayShow } from "./display";
 import { fetchCityData, fetchCityNameByCoords } from "./fetchData";
-//const cityName = document.getElementById('cityName')
-
-//export const citiesData = []
 
 export function getWeatherAuto() {
     navigator.geolocation.getCurrentPosition(async position => {
@@ -21,7 +18,6 @@ export async function getlistOfCities() {
         const city = cityInput.value
         if (city !== '') {
             const data = await fetchCityData(city.trim());
-            //console.log(data ? data.filter(el => el !== undefined) : undefined)
             displayShow(cityList)
             return data ? data.filter(el => el !== undefined) : undefined
         } else {

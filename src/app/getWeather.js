@@ -14,6 +14,7 @@ const cityName = document.getElementById('cityName')
 const dayNow = document.getElementById('dayName')
 const weatherDescription = document.getElementById('weatherDescription')
 const nowIcon = document.querySelector('#nowIcon')
+import { CardsData, FirstCardData, FourthCardData } from './classes/CardsData';
 
 // getting weather
 export async function getWeather(coords, cityNames) {
@@ -23,7 +24,14 @@ export async function getWeather(coords, cityNames) {
             function roundNum(prop) {
                 return Math.round(Number(prop))
             }
+            
+            const test = new FirstCardData(data, cityNames)
+            console.log(test.getWeather())
+            console.log(test)
 
+            const test1 = new FourthCardData(data, cityNames)
+            console.log(test1.getWeather())
+            
             function addSign(num) {
                 return num > 0 ? '+' + num : num
             }

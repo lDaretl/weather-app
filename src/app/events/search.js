@@ -3,7 +3,6 @@ import { displayShowSearch, displayHideFullSearch, displayHide, displayHideSearc
 import { parseCoordsFromData, parseFullCityName } from "../tools/parse";
 import { getWeather } from "../getWeather";
 
-
 export function search() {
     displaySearch()
     displayCitiesList()

@@ -3,7 +3,7 @@ import '../styles/scss/index.scss'
 require.context('../assets/weather-icons', true, /\.svg$/)
 import { geolocationPin } from './events/geolocation';
 import { search } from './events/search';
-
+import { Weather } from './classes/CardsData';
 
 // main
 async function main() {
@@ -13,6 +13,7 @@ async function main() {
 
     geolocationPin()
     search()
+
 
 }
 
