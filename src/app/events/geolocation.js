@@ -15,8 +15,9 @@ export function geolocationPin() {
                 event.target.src = pinStatic;
                 break;
             case 2:
-                getWeatherAuto()
-                displayHideFullSearch()
+                getWeatherAuto();
+                displayHideFullSearch();
+                break;
         }
     }))
 }

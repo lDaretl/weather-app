@@ -1,5 +1,3 @@
-import { parseFullCityName } from "./parse";
-
 // hide element
 export function displayHide(idEl) {
     idEl.classList.add('hide')
@@ -34,16 +32,4 @@ export function displayHideSearch() {
 export function displayHideFullSearch() {
     displayHideSearch()
     displayHide(cityList)
-}
-
-// create list of cities
-export function displayCityList(arrData) {
-    if(arrData) {
-        return arrData.map((value, index) => {
-            if (value !== undefined) {
-                const city = parseFullCityName(value);
-                cityList.insertAdjacentHTML("beforeend", `<div class="list__item" id="itemCity${index}">${city[0]}, ${city[1] ? city[1] + ', ' : ''}${city[2]}</div>`)
-            }
-        })
-    }
 }

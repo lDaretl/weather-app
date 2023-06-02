@@ -13,6 +13,9 @@ export class CardsData {
     #indexNow;
     #indexHourly;
     #dateFull;
+    #dataFirstCard
+    #dataFourthCard
+    #dataAllCards
     #weatherCodesEn = {
         0: 'Clear sky',
         1: 'Mainly clear',
@@ -137,6 +140,15 @@ export class CardsData {
         96: 'thunderstorms-night-snow',
         ['99 *']: 'thunderstorms-night-snow'
     }
+    #daysOfTheWeekEn = {
+        1: 'Monday',
+        2: 'Tuesday',
+        3: 'Wensday',
+        4: 'Thursday',
+        5: 'Friday',
+        6: 'Saturday',
+        7: 'Sunday',
+    }
     #daysOfTheWeekRu = {
         1: 'Понедельник',
         2: 'Вторник',
@@ -146,14 +158,17 @@ export class CardsData {
         6: 'Суббота',
         7: 'Воскресенье',
     }
-    #daysOfTheWeekEn = {
-        1: 'Monday',
-        2: 'Tuesday',
-        3: 'Wensday',
-        4: 'Thursday',
-        5: 'Friday',
-        6: 'Saturday',
-        7: 'Sunday',
+
+    get dataFirstCard() {
+        return this.#dataFirstCard
+    }
+
+    get dataFourthCard() {
+        return this.#dataFourthCard
+    }
+
+    get dataAllCards() {
+        return this.#dataAllCards
     }
 
     constructor(data, cityNames) {
@@ -171,50 +186,17 @@ export class CardsData {
         this.#indexHourly = this.#propsHourly.time.indexOf(this.#dateFull)
     }
 
-    get hourNow() {
-        return this.#hourNow
+    getDataAllCards() {
+        this.getDataFirstCard(),
+            this.getDataFourthCard(),
+            this.#dataAllCards = {
+                firstCard: this.#dataFirstCard,
+                fourthCard: this.#dataFourthCard,
+            }
     }
 
-    get isDay() {
-        return this.#isDay
-    }
-
-    get weatherIconsDay() {
-        return this.#weatherIconsDay
-    }
-
-    get weatherIconsNight() {
-        return this.#weatherIconsNight
-    }
-
-    get weatherCode() {
-        return this.#weatherCode
-    }
-
-    get weatherCode() {
-        return this.#weatherCode
-    }
-
-    get propsDaily() {
-        return this.#propsDaily
-    }
-
-    get hourNow() {
-        return this.#hourNow
-    }
-
-    get daysOfTheWeekRu() {
-        return this.#daysOfTheWeekRu
-    }
-
-    get dayNow() {
-        return this.#dayNow
-    }
-
-    getWeather() {
-
+    getDataFirstCard() {
         const results = new Object()
-        console.log(this.#dayNow)
         results.icon = `./assets/images/${this.#isDay ? this.#weatherIconsDay[this.#weatherCode] : this.#weatherIconsNight[this.#weatherCode]}.svg`
         results.city = `${this.#cityNames[0]}, ${this.#cityNames[1] ? this.#cityNames[1] : this.#cityNames[2]}`
         results.day = this.#daysOfTheWeekRu[this.#dayNow]
@@ -224,13 +206,13 @@ export class CardsData {
         results.minTemp = addSign(roundNum(this.#propsDaily.temperature_2m_min[0]))
 
         results.weatherHourly = (() => {
-            const results = [];
+            const results = {};
             for (let i = 1; i < 6; i++) {
-                const resultHour = [];
-                resultHour.push(`${this.#hourNow + i}:00`);
-                resultHour.push(`./assets/images/${this.#isDay ? this.#weatherIconsDay[this.#weatherCode] : this.#weatherIconsNight[this.#weatherCode]}.svg`);
-                resultHour.push(`${addSign(roundNum(this.#propsHourly.temperature_2m[this.#indexHourly + i]))}`);
-                results.push(resultHour);
+                const hour = new Object()
+                hour.time = `${this.#hourNow + i}:00`;
+                hour.icon = `./assets/images/${this.#isDay ? this.#weatherIconsDay[this.#weatherCode] : this.#weatherIconsNight[this.#weatherCode]}.svg`;
+                hour.temp = `${addSign(roundNum(this.#propsHourly.temperature_2m[this.#indexHourly + i]))}`;
+                results[`hour${i}`] = hour;
             }
             return results;
         })()
@@ -239,34 +221,66 @@ export class CardsData {
         results.rain = roundNum(this.#propsDaily.precipitation_probability_max[0])
         results.pressure = roundNum(this.#propsHourly.pressure_msl[this.#indexNow] * 0.750064)
 
-        return results
+        return this.#dataFirstCard = results
     }
 
-}
-
-export class FirstCardData extends CardsData {
-    getWeather() {
-        return super.getWeather()
+    getDataFourthCard() {
+        const results = new Object();
+        let day = this.#dayNow + 1
+        for (let i = 1; i < 6; i++) {
+            const resultDaily = new Object();
+            resultDaily.day = this.#daysOfTheWeekRu[day >= 7 ? (this.#daysOfTheWeekRu[day], day -= 6) : (this.#daysOfTheWeekRu[day], day++)]
+            resultDaily.icon = `./assets/images/${this.#weatherIconsDay[this.#propsDaily.weathercode[i]]}.svg`;
+            resultDaily.tempMax = `${addSign(roundNum(this.#propsDaily.temperature_2m_max[i]))}°`
+            resultDaily.tempMin = `${addSign(roundNum(this.#propsDaily.temperature_2m_min[i]))}°`
+            results[`day${i}`] = resultDaily;
+        }
+        return this.#dataFourthCard = results
     }
-}
 
-export class FourthCardData extends CardsData {
-    getWeather() {
-            const results = [];
-            let day = this.dayNow
-            for (let i = 1; i < 6; i++) {
-                const resultDaily = [];
-                resultDaily.push( day >= 7 ? (this.daysOfTheWeekRu[day], day -= 6) : (this.daysOfTheWeekRu[day], day++))
-                resultDaily.push(`./assets/images/${this.isDay ? this.weatherIconsDay[this.weatherCode] : this.weatherIconsNight[this.weatherCode]}.svg`);
-                resultDaily.push(`${addSign(roundNum(this.propsDaily.temperature_2m_max[i]))}`);
-                resultDaily.push(`${addSign(roundNum(this.propsDaily.temperature_2m_min[i]))}`);
-                results.push(resultDaily);
+    fillAllCards() {
+        this.fillFirstCard()
+        this.fillFourthCard()
+    }
+
+    fillFirstCard() {
+        const data = this.#dataFirstCard
+        nowIcon.src = data.icon
+        cityName.innerText = data.city
+        dayName.innerHTML = data.day
+        weatherDescription.innerHTML = data.description
+        currentTemp.innerHTML = data.temp
+        maxTempDay.innerHTML = data.maxTemp + '°'
+        minTempDay.innerHTML = data.minTemp + '°'
+        //filling weather hourly 
+        ;(() => {
+            const data = this.#dataFirstCard.weatherHourly
+            const hours = document.querySelector('#hours').children
+            for (let index in Object.keys(hours)) {
+                const id = Number(index) + 1
+                const hour = `hour${id}`
+                const props = hours[index].children
+                props[0].innerText = data[hour].time
+                props[1].children[0].src = data[hour].icon
+                props[2].innerText = data[hour].temp
             }
-            return results;
+        })()
+        currentWind.innerHTML = data.wind + ' м/с'
+        rainPosib.innerHTML = data.rain + '%'
+        pressure.innerHTML = data.pressure + ' мм рт. ст.'
+    }
+
+    fillFourthCard() {
+        const data = this.#dataFourthCard
+        const days = document.querySelector('#weatherDaily').children
+        for (let index in Object.keys(days)) {
+            const id = Number(index) + 1
+            const props = days[index].children
+            const day = `day${id}`
+            props[0].innerText = data[day].day
+            props[1].children[0].src = data[day].icon
+            props[2].children[0].innerText = data[day].tempMax
+            props[2].children[1].innerText = data[day].tempMin
+        }
     }
 }
-
-
-// TODO
-// 1) in 4 card return index, not words
-// 2) wrong images

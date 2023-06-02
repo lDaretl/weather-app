@@ -12,3 +12,17 @@ export function parseCoordsFromCurrentPosition(data) {
 export function parseCoordsFromData(data) {
     return [data.latitude, data.longitude]
 }
+
+// getting all full cities names
+export function parseListOfCities(arrData) {
+    if (arrData) {
+        const results = [];
+        arrData.map(value => {
+                results.push(parseFullCityName(value))
+            }
+        )
+        return results;
+    } else {
+        return undefined
+    }
+}

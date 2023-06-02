@@ -1,9 +1,8 @@
-import { parseCoordsFromCurrentPosition} from "./parse";
+import { parseCoordsFromCurrentPosition } from "./parse";
 import { getWeather } from "../getWeather";
-import { displayShow } from "./display";
 import { fetchCityData, fetchCityNameByCoords } from "./fetchData";
 
-export function getWeatherAuto() {
+export async function getWeatherAuto() {
     navigator.geolocation.getCurrentPosition(async position => {
         const coords = parseCoordsFromCurrentPosition(position)
         const nameCity = await fetchCityNameByCoords(coords);
@@ -12,17 +11,14 @@ export function getWeatherAuto() {
     }, err => console.error('Сan\'t get weather automaticly!\n', err))
 }
 
-export async function getlistOfCities() {
-    cityList.innerHTML = ''
-    try {
-        const city = cityInput.value
-        if (city !== '') {
-            const data = await fetchCityData(city.trim());
-            displayShow(cityList)
-            return data ? data.filter(el => el !== undefined) : undefined
-        } else {
-            return undefined
-        }
-    } catch (err) {}
-    
+export async function getListOfCities() {
+    const city = cityInput.value
+    console.log(city, 'city')
+    if (city !== '') {
+        const data = await fetchCityData(city.trim());
+        console.log(data, '1')
+        return data ? data.filter(el => el !== undefined) : undefined
+    } else {
+        return undefined
+    }
 }

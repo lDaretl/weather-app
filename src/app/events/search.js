@@ -1,7 +1,8 @@
-import { getlistOfCities} from "../tools/get";
-import { displayShowSearch, displayHideFullSearch, displayHide, displayHideSearch, displayCityList } from "../tools/display";
+import { getListOfCities} from "../tools/get";
+import { displayHideFullSearch, displayHide, displayHideSearch, displayShow, displayShowFullSearch } from "../tools/display";
 import { parseCoordsFromData, parseFullCityName } from "../tools/parse";
 import { getWeather } from "../getWeather";
+import { fillListOfCities } from "../tools/fill";
 
 export function search() {
     displaySearch()
@@ -14,8 +15,8 @@ export function search() {
 function displaySearch() {
     document.addEventListener('click', async event => {
         if (event.target.id.includes('city')) {
-            displayShowSearch()
-            displayCityList(await getlistOfCities())
+            fillListOfCities();
+            displayShowFullSearch()
         }
         else {
             cityName.innerText ? displayHideFullSearch() : displayHide(cityList);
@@ -26,14 +27,15 @@ function displaySearch() {
 // track search input, get & display list of cities
 function displayCitiesList() {
     ['input', ].map(action => cityInput.addEventListener(action, async () => {
-        displayCityList(await getlistOfCities())
+        fillListOfCities()
+        displayShow(cityList)
     }))
 }
 
 // get the weather for the selected city from the list
 function getWeatherByList() {
     cityList.addEventListener('click', async (event) => {
-        const list = await getlistOfCities()
+        const list = await getListOfCities()
         const data = list[event.target.id.substr(8, 1)]
         displayHideFullSearch();
         getWeather(parseCoordsFromData(data), parseFullCityName(data));
@@ -48,7 +50,7 @@ function getWeatherBySearch() {
                 event.preventDefault()
                 displayHide(cityList)
                 displayHideSearch()
-                const data = getlistOfCities();
+                const data = getListOfCities();
                 getWeather(parseCoordsFromData(data), parseFullCityName(data));
             } catch (err) {
                 console.error('Error, can\'t get weather!\n ', err)
