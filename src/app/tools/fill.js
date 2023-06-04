@@ -1,12 +1,25 @@
-import { getListOfCities } from "./get"
-import { insertCityList } from "./insert"
-import { parseListOfCities } from "./parse"
+import { parseListOfCities } from "../tools/parse.js"
+import { CardsData } from '../classes/CardsData';
+import { parseFullCityName } from "./parse";
+import { fetchWeather } from "./fetch.js"
+import { getListOfCities } from "./get.js";
 
 // fill HTML list of cities
 export async function fillListOfCities() {
-    cityList.innerHTML = '';
-    insertCityList(parseListOfCities(await getListOfCities()))
+    cityList.innerHTML = ''
+    ;(function insertCityList(arrData) {
+        if(arrData){
+            return arrData.map((value, index) => {
+                cityList.insertAdjacentHTML("beforeend", `<div class="list__item" id="itemCity${index}">${value[0]}, ${value[1] ? value[1] + ', ' : ''}${value[2]}</div>`)
+            })
+        }    
+    })(parseListOfCities(await getListOfCities()))
 }
 
-//TODO
-// Убарть? Юзается один раз
+//fill weather cards
+export async function fillWeatherCards(dataRaw) {
+    const data = await fetchWeather(dataRaw)
+    const cardsData = new CardsData(data, parseFullCityName(dataRaw))
+    cardsData.getDataAllCards()
+    cardsData.fillAllCards()
+}

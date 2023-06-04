@@ -1,8 +1,6 @@
 import { getListOfCities} from "../tools/get";
 import { displayHideFullSearch, displayHide, displayHideSearch, displayShow, displayShowFullSearch } from "../tools/display";
-import { parseCoordsFromData, parseFullCityName } from "../tools/parse";
-import { getWeather } from "../getWeather";
-import { fillListOfCities } from "../tools/fill";
+import { fillWeatherCards, fillListOfCities } from "../tools/fill";
 
 export function search() {
     displaySearch()
@@ -26,10 +24,10 @@ function displaySearch() {
 
 // track search input, get & display list of cities
 function displayCitiesList() {
-    ['input', ].map(action => cityInput.addEventListener(action, async () => {
+    cityInput.addEventListener('input', async () => {
         fillListOfCities()
         displayShow(cityList)
-    }))
+    })
 }
 
 // get the weather for the selected city from the list
@@ -38,7 +36,7 @@ function getWeatherByList() {
         const list = await getListOfCities()
         const data = list[event.target.id.substr(8, 1)]
         displayHideFullSearch();
-        getWeather(parseCoordsFromData(data), parseFullCityName(data));
+        fillWeatherCards(data);
     })
 }
 
@@ -51,12 +49,10 @@ function getWeatherBySearch() {
                 displayHide(cityList)
                 displayHideSearch()
                 const data = getListOfCities();
-                getWeather(parseCoordsFromData(data), parseFullCityName(data));
+                fillWeatherCards(data);
             } catch (err) {
                 console.error('Error, can\'t get weather!\n ', err)
             }
         }
     })
 }
-
-
