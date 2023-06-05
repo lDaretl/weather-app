@@ -4,7 +4,7 @@ import { parseCoords } from "./parse";
 // getting data about city by city name
 export async function fetchCityData(city) {
     async function fetchCityData(city) {
-        const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10&language=ru&format=json`)
+        const response = await fetch(links.openMeteoCity(city))
         return response.json();
     }
 
@@ -18,9 +18,10 @@ export async function fetchCityData(city) {
 }
 
 // getting data about city by city coords
-export async function fetchCityName(coords) {
-    const response = await fetch(`http://api.geonames.org/findNearbyPostalCodesJSON?lat=${coords[0]}&lng=${coords[1]}&username=Daret`)
+export async function fetchCityName(position) {
+    const response = await fetch(links.geoNames(parseCoords(position)))
     const data = await response.json();
+    console.log(data)
     const dataArr = data.postalCodes;
     const match = dataArr.filter(item => item.adminName1.includes(item.placeName))
     if (match) {

@@ -141,22 +141,22 @@ export class CardsData {
         ['99 *']: 'thunderstorms-night-snow'
     }
     #daysOfTheWeekEn = {
+        0: 'Sunday',
         1: 'Monday',
         2: 'Tuesday',
         3: 'Wensday',
         4: 'Thursday',
         5: 'Friday',
         6: 'Saturday',
-        7: 'Sunday',
     }
     #daysOfTheWeekRu = {
+        0: 'Воскресенье',
         1: 'Понедельник',
         2: 'Вторник',
         3: 'Среда',
         4: 'Четверг',
         5: 'Пятница',
         6: 'Суббота',
-        7: 'Воскресенье',
     }
 
     get dataFirstCard() {
@@ -207,9 +207,15 @@ export class CardsData {
 
         results.weatherHourly = (() => {
             const results = {};
+            let hourNow = this.#hourNow
+            console.log(hourNow, '1')
             for (let i = 1; i < 6; i++) {
                 const hour = new Object()
-                hour.time = `${this.#hourNow + i}:00`;
+                hourNow < 24 ? null : hourNow = 0;
+                console.log(hourNow, '2')
+                hour.time = `${hourNow.toString().padStart(2, '0')}:00`
+                hourNow++;
+                console.log(hourNow, '3')
                 hour.icon = `./assets/images/${this.#isDay ? this.#weatherIconsDay[this.#weatherCode] : this.#weatherIconsNight[this.#weatherCode]}.svg`;
                 hour.temp = `${addSign(roundNum(this.#propsHourly.temperature_2m[this.#indexHourly + i]))}`;
                 results[`hour${i}`] = hour;
@@ -252,19 +258,19 @@ export class CardsData {
         currentTemp.innerHTML = data.temp
         maxTempDay.innerHTML = data.maxTemp + '°'
         minTempDay.innerHTML = data.minTemp + '°'
-        //filling weather hourly 
-        ;(() => {
-            const data = this.#dataFirstCard.weatherHourly
-            const hours = document.querySelector('#hours').children
-            for (let index in Object.keys(hours)) {
-                const id = Number(index) + 1
-                const hour = `hour${id}`
-                const props = hours[index].children
-                props[0].innerText = data[hour].time
-                props[1].children[0].src = data[hour].icon
-                props[2].innerText = data[hour].temp
-            }
-        })()
+            //filling weather hourly 
+            ; (() => {
+                const data = this.#dataFirstCard.weatherHourly
+                const hours = document.querySelector('#hours').children
+                for (let index in Object.keys(hours)) {
+                    const id = Number(index) + 1
+                    const hour = `hour${id}`
+                    const props = hours[index].children
+                    props[0].innerText = data[hour].time
+                    props[1].children[0].src = data[hour].icon
+                    props[2].innerText = data[hour].temp
+                }
+            })()
         currentWind.innerHTML = data.wind + ' м/с'
         rainPosib.innerHTML = data.rain + '%'
         pressure.innerHTML = data.pressure + ' мм рт. ст.'

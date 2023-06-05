@@ -5,7 +5,7 @@ import { fetchCityData, fetchCityName } from "./fetch";
 export async function getWeatherAuto() {
     navigator.geolocation.getCurrentPosition(async position => {
         const coords = parseCoords(position)
-        const nameCity = await fetchCityName(coords);
+        const nameCity = await fetchCityName(position);
         fillWeatherCards({latitude: coords[0], longitude: coords[1], name: nameCity[0], admin1: nameCity[1]})
         cityInput.value = nameCity[0]
     }, err => console.error('Сan\'t get weather automaticly!\n', err))
