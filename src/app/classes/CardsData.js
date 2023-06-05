@@ -14,7 +14,8 @@ export class CardsData {
     #indexHourly;
     #dateFull;
     #dataFirstCard
-    #dataFourthCard
+    #dataSecondCard
+    #dataThirdCard
     #dataAllCards
     #weatherCodesEn = {
         0: 'Clear sky',
@@ -78,13 +79,13 @@ export class CardsData {
         96: 'Гроза с градом',
         ['99 *']: 'Сильная гроза с градом'
     };
-    #weatherIconsDay = {
-        0: 'clear-day',
-        1: 'partly-cloudy-day',
+    #weatherIcons = {
+        0: 'clear',
+        1: 'partly-cloudy',
         2: 'cloudy',
-        3: 'overcast-day',
-        45: 'fog',
-        48: 'fog',
+        3: 'overcast',
+        45: 'mist',
+        48: 'mist',
         51: 'drizzle',
         53: 'drizzle',
         55: 'drizzle',
@@ -104,41 +105,10 @@ export class CardsData {
         82: 'rain',
         85: 'snow',
         86: 'snow',
-        95: 'thunderstorms-day',
-        '*': 'thunderstorms-day',
-        96: 'thunderstorms-day-snow',
-        ['99 *']: 'thunderstorms-day-snow'
-    }
-    #weatherIconsNight = {
-        0: 'clear-night',
-        1: 'partly-cloudy-night',
-        2: 'cloudy',
-        3: 'overcast-night',
-        45: 'fog',
-        48: 'fog',
-        51: 'drizzle',
-        53: 'drizzle',
-        55: 'drizzle',
-        56: 'sleet',
-        57: 'sleet',
-        61: 'drizzle',
-        63: 'rain',
-        65: 'rain',
-        66: 'sleet',
-        67: 'sleet',
-        71: 'snow',
-        73: 'snow',
-        75: 'snow',
-        77: 'snow',
-        80: 'rain',
-        81: 'rain',
-        82: 'rain',
-        85: 'snow',
-        86: 'snow',
-        95: 'thunderstorms-night',
-        '*': 'thunderstorms-night',
-        96: 'thunderstorms-night-snow',
-        ['99 *']: 'thunderstorms-night-snow'
+        95: 'thunderstorms',
+        '*': 'thunderstorms',
+        96: 'thunderstorms-snow',
+        ['99 *']: 'thunderstorms-snow'
     }
     #daysOfTheWeekEn = {
         0: 'Sunday',
@@ -163,8 +133,8 @@ export class CardsData {
         return this.#dataFirstCard
     }
 
-    get dataFourthCard() {
-        return this.#dataFourthCard
+    get dataThirdCard() {
+        return this.#dataThirdCard
     }
 
     get dataAllCards() {
@@ -187,42 +157,25 @@ export class CardsData {
     }
 
     getDataAllCards() {
-        this.getDataFirstCard(),
-            this.getDataFourthCard(),
-            this.#dataAllCards = {
-                firstCard: this.#dataFirstCard,
-                fourthCard: this.#dataFourthCard,
-            }
+        this.getDataFirstCard()
+        this.getDataSecondCard()
+        this.getDataThirdCard()
+        this.#dataAllCards = {
+            firstCard: this.#dataFirstCard,
+            secondCard: this.#dataFirstCard,
+            thirdCard: this.#dataThirdCard,
+        }
     }
 
     getDataFirstCard() {
         const results = new Object()
-        results.icon = `./assets/images/${this.#isDay ? this.#weatherIconsDay[this.#weatherCode] : this.#weatherIconsNight[this.#weatherCode]}.svg`
+        results.icon = `./assets/images/${[0, 1, 3].includes(this.#weatherCode) ? (this.#isDay ? `${this.#weatherIcons[this.#weatherCode]}-day` : `${this.#weatherIcons[this.#weatherCode]}-night`) : null}.svg`
         results.city = `${this.#cityNames[0]}, ${this.#cityNames[1] ? this.#cityNames[1] : this.#cityNames[2]}`
         results.day = this.#daysOfTheWeekRu[this.#dayNow]
         results.description = this.#weatherCodesRu[this.#weatherCode]
         results.temp = addSign(roundNum(this.#propsNow.temperature))
         results.maxTemp = addSign(roundNum(this.#propsDaily.temperature_2m_max[0]))
         results.minTemp = addSign(roundNum(this.#propsDaily.temperature_2m_min[0]))
-
-        results.weatherHourly = (() => {
-            const results = {};
-            let hourNow = this.#hourNow
-            console.log(hourNow, '1')
-            for (let i = 1; i < 6; i++) {
-                const hour = new Object()
-                hourNow < 24 ? null : hourNow = 0;
-                console.log(hourNow, '2')
-                hour.time = `${hourNow.toString().padStart(2, '0')}:00`
-                hourNow++;
-                console.log(hourNow, '3')
-                hour.icon = `./assets/images/${this.#isDay ? this.#weatherIconsDay[this.#weatherCode] : this.#weatherIconsNight[this.#weatherCode]}.svg`;
-                hour.temp = `${addSign(roundNum(this.#propsHourly.temperature_2m[this.#indexHourly + i]))}`;
-                results[`hour${i}`] = hour;
-            }
-            return results;
-        })()
-
         results.wind = roundNum(this.#propsNow.windspeed)
         results.rain = roundNum(this.#propsDaily.precipitation_probability_max[0])
         results.pressure = roundNum(this.#propsHourly.pressure_msl[this.#indexNow] * 0.750064)
@@ -230,23 +183,45 @@ export class CardsData {
         return this.#dataFirstCard = results
     }
 
-    getDataFourthCard() {
+    getDataSecondCard() {
+        const results = {};
+        console.log(this.#propsHourly)
+        let hourNow = this.#hourNow
+        for (let i = 1; i < 6; i++) {
+            const hour = new Object()
+            const indexHourly = this.#indexHourly + i
+            hourNow < 24 ? null : hourNow = 0;
+            hour.time = `${hourNow.toString().padStart(2, '0')}:00`
+            hourNow++;
+            hour.icon = `./assets/images/${[0, 1, 3].includes(this.#weatherCode) ? (this.#isDay ? `${this.#weatherIcons[this.#weatherCode]}-day` : `${this.#weatherIcons[this.#weatherCode]}-night`) : null}.svg`
+            hour.temp = `${addSign(roundNum(this.#propsHourly.temperature_2m[indexHourly]))}`;
+            hour.wind = `${roundNum(this.#propsHourly.windspeed_10m[indexHourly])} м/с`;
+            hour.rain = `${this.#propsHourly.precipitation_probability[indexHourly]}%`;
+            results[`hour${i}`] = hour;
+        }
+        return this.#dataSecondCard = results
+    }
+
+    getDataThirdCard() {
         const results = new Object();
         let day = this.#dayNow + 1
         for (let i = 1; i < 6; i++) {
             const resultDaily = new Object();
             resultDaily.day = this.#daysOfTheWeekRu[day >= 7 ? (this.#daysOfTheWeekRu[day], day -= 6) : (this.#daysOfTheWeekRu[day], day++)]
-            resultDaily.icon = `./assets/images/${this.#weatherIconsDay[this.#propsDaily.weathercode[i]]}.svg`;
+            resultDaily.icon = `./assets/images/${[0, 1, 3].includes(this.#weatherCode) ? `${this.#weatherIcons[this.#weatherCode]}-day` : this.#weatherIcons[this.#propsDaily.weathercode[i]]}.svg`;
             resultDaily.tempMax = `${addSign(roundNum(this.#propsDaily.temperature_2m_max[i]))}°`
             resultDaily.tempMin = `${addSign(roundNum(this.#propsDaily.temperature_2m_min[i]))}°`
+            resultDaily.wind = `${roundNum(this.#propsDaily.windspeed_10m_max[i])} м/с`
+            resultDaily.rain = `${this.#propsDaily.precipitation_probability_max[i]}%`
             results[`day${i}`] = resultDaily;
         }
-        return this.#dataFourthCard = results
+        return this.#dataThirdCard = results
     }
 
     fillAllCards() {
         this.fillFirstCard()
-        this.fillFourthCard()
+        this.fillSecondCard()
+        this.fillThirdCard()
     }
 
     fillFirstCard() {
@@ -258,26 +233,30 @@ export class CardsData {
         currentTemp.innerHTML = data.temp
         maxTempDay.innerHTML = data.maxTemp + '°'
         minTempDay.innerHTML = data.minTemp + '°'
-            //filling weather hourly 
-            ; (() => {
-                const data = this.#dataFirstCard.weatherHourly
-                const hours = document.querySelector('#hours').children
-                for (let index in Object.keys(hours)) {
-                    const id = Number(index) + 1
-                    const hour = `hour${id}`
-                    const props = hours[index].children
-                    props[0].innerText = data[hour].time
-                    props[1].children[0].src = data[hour].icon
-                    props[2].innerText = data[hour].temp
-                }
-            })()
         currentWind.innerHTML = data.wind + ' м/с'
         rainPosib.innerHTML = data.rain + '%'
         pressure.innerHTML = data.pressure + ' мм рт. ст.'
     }
 
-    fillFourthCard() {
-        const data = this.#dataFourthCard
+    fillSecondCard() {
+        const data = this.#dataSecondCard
+        console.log(data)
+        const hours = document.querySelector('#hours').children
+        console.log(hours)
+        for (let index in Object.keys(hours)) {
+            const id = Number(index) + 1
+            const hour = `hour${id}`
+            const props = hours[index].children
+            props[0].innerText = data[hour].time
+            props[1].children[0].src = data[hour].icon
+            props[2].innerText = data[hour].temp
+            props[3].innerText = data[hour].wind
+            props[4].innerText = data[hour].rain
+        }
+    }
+
+    fillThirdCard() {
+        const data = this.#dataThirdCard
         const days = document.querySelector('#weatherDaily').children
         for (let index in Object.keys(days)) {
             const id = Number(index) + 1
@@ -285,8 +264,11 @@ export class CardsData {
             const day = `day${id}`
             props[0].innerText = data[day].day
             props[1].children[0].src = data[day].icon
-            props[2].children[0].innerText = data[day].tempMax
-            props[2].children[1].innerText = data[day].tempMin
+            props[2].innerText = data[day].tempMax
+            props[3].innerText = data[day].tempMin
+            props[4].innerText = data[day].wind
+            props[5].innerText = data[day].rain
+
         }
     }
 }
