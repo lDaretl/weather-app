@@ -1,5 +1,5 @@
 export function addSign(num) {
-    return num > 0 ? '+' + num : num
+    return num = 0 ? num : (num > 0 ? `+${num}` : `-${num}`)
 }
 
 export function roundNum(prop) {

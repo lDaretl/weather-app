@@ -10,7 +10,7 @@ export function displayShow(idEl) {
 
 // show search
 export function displayShowSearch() {
-    displayShow(cityBlock);
+    displayShow(cityInput);
     displayHide(cityName);
     cityInput.focus()
 }
@@ -24,7 +24,7 @@ export function displayShowFullSearch() {
 // hide search
 export function displayHideSearch() {
     cityInput.focus()
-    displayHide(cityBlock);
+    displayHide(cityInput);
     displayShow(cityName);
 }
 
