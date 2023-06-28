@@ -25,32 +25,50 @@ body {
 .wrapper {
     height: 100%;
     width: 100%;
-}
-
-.background {
-    & > img {
-        object-position: right;
-        height: 100vh;
-        width: 100%;
-    }
-}
-
-.blur {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    backdrop-filter: blur(10px);
-    overflow: hidden;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    filter: blur(10px);
+    
+    & > img {
+        object-position: center;
+        height: 100vh;
+        width: 100%;
+    }
+}
+
+// .blur {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     height: 100%;
+//     width: 100%;
+//     backdrop-filter: blur(10px);
+//     overflow: hidden;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
 .container {
-    width: 80%;
-    height: 62%;
+    @media (max-width: 1336px) {
+        width: 80%;
+        height: 60%;
+    }
+    @media (max-width: 920px) {
+        width: 85%;
+        height: 65%;
+    }
 }
 
 .cards {

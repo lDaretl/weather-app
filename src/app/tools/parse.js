@@ -9,7 +9,15 @@ export function parseCoords(data) {
         return [data.coords.latitude, data.coords.longitude]
     } else if (data.latitude) {
         return [data.latitude, data.longitude]
-    }    
+    }
+}
+
+export function parseTimezone(data) {
+    if (data.timezone) {
+        return data.timezone
+    } else {
+        return Intl.DateTimeFormat().resolvedOptions().timeZone
+    }
 }
 
 // getting all full cities names
@@ -17,9 +25,8 @@ export function parseListOfCities(arrData) {
     if (arrData) {
         const results = [];
         arrData.map(value => {
-                results.push(parseFullCityName(value))
-            }
-        )
+            results.push(parseFullCityName(value))
+        })
         return results;
     } else {
         return undefined

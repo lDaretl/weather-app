@@ -1,6 +1,6 @@
 import { parseListOfCities } from "../tools/parse.js"
 import { CardsData } from '../classes/CardsData';
-import { parseFullCityName } from "./parse";
+import { parseFullCityName, parseTimezone } from "./parse";
 import { fetchWeather } from "./fetch.js"
 import { getListOfCities } from "./get.js";
 

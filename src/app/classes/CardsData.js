@@ -16,6 +16,7 @@ export class CardsData {
     #dataSecondCard
     #dataThirdCard
     #dataAllCards
+    #timeUTC;
     #weatherCodesEn = {
         0: 'Clear sky',
         1: 'Mainly clear',
@@ -146,7 +147,9 @@ export class CardsData {
         this.#propsDaily = data.daily
         this.#cityNames = cityNames
         this.#date = new Date()
-        this.#hourNow = this.#date.getHours()
+        this.#hourNow = this.#date.getUTCHours() + (data.utc_offset_seconds / 3600)
+        this.#timeUTC = this.#date.getTimezoneOffset()*60
+        console.log(this.#timeUTC, this.#date.getUTCDay())
         this.#dayNow = this.#date.getDay()
         this.#dateFull = `${this.#date.getFullYear()}-${String(this.#date.getMonth() + 1).padStart(2, '0')}-${String(this.#date.getDate()).padStart(2, '0')}T${String(this.#hourNow).padStart(2, '0')}:00`
         this.#indexNow = this.#propsNow.time.indexOf(this.#dateFull)
@@ -182,7 +185,7 @@ export class CardsData {
         results.apparentTemp = addSign(roundNum(this.#propsHourly.apparent_temperature[0]))
         results.wind = roundNum(this.#propsNow.windspeed)
         results.rain = roundNum(this.#propsDaily.precipitation_probability_max[0])
-        results.pressure = addSign(roundNum(this.#propsHourly.pressure_msl[this.#indexNow] * 0.750064))
+        results.pressure = roundNum(this.#propsHourly.pressure_msl[this.#indexNow] * 0.750064)
 
         return this.#dataFirstCard = results
     }
@@ -196,9 +199,9 @@ export class CardsData {
             const weatherCode = this.#propsHourly.weathercode[indexHourly]
             const icon = this.#weatherIcons[weatherCode]
             const isDay = this.#propsHourly.is_day[indexHourly]
+            hourNow++;
             hourNow < 24 ? null : hourNow = 0;
             hour.time = `${hourNow.toString().padStart(2, '0')}:00`
-            hourNow++;
             hour.icon = `./assets/images/${[0, 1, 3].includes(weatherCode) ? (isDay ? `${icon}-day` : `${icon}-night`) : icon}.svg`
             hour.temp = `${addSign(roundNum(this.#propsHourly.temperature_2m[indexHourly]))}°`;
             hour.wind = `${roundNum(this.#propsHourly.windspeed_10m[indexHourly])} м/с`;

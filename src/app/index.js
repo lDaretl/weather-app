@@ -1,6 +1,7 @@
 'use strict';
 import '../styles/scss/index.scss'
 require.context('../assets/weather-icons', true, /\.svg$/)
+require.context('../assets/', false, /Background.png$/)
 import { geolocationPin } from './events/geolocation';
 import { search } from './events/search';
 import { getWeatherAuto } from './tools/get';
