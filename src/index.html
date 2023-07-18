@@ -31,8 +31,10 @@
                                 <img src="assets/icons/pin-static.gif" alt="pin" id="pinImg">
                                 <div class="city__box box" id="cityNow">
                                     <div class="box__name" id="cityName"></div>
-                                    <input class="box__input" type="search" id="cityInput"
-                                        placeholder="Найти город...">
+                                    <form id="searchForm">
+                                        <input focus data-city="" class="box__input" type="search" id="cityInput"
+                                            placeholder="Название города...">
+                                    </form>
                                     <div class="box__list list hide" id="cityList"></div>
                                 </div>
                             </div>

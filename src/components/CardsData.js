@@ -1,6 +1,6 @@
-import { addSign, roundNum } from "../tools/weather";
+import { addSign, roundNum } from "../utils/weather";
 
-export class CardsData {
+export default class CardsData {
     #propsNow;
     #propsHourly;
     #propsDaily;
@@ -131,6 +131,10 @@ export class CardsData {
 
     get dataFirstCard() {
         return this.#dataFirstCard
+    }
+
+    get dataSecondCard() {
+        return this.#dataThirdCard
     }
 
     get dataThirdCard() {

@@ -5,7 +5,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     entry: {
-        main: './app/index.js'
+        main: './index.js'
     },
     output: {
         filename: './js/[name].[contenthash].js',
@@ -24,19 +24,19 @@ module.exports = {
                 test: /\.html$/,
                 use: ['html-loader'],
             },
-            {
-                test: /\.css$/,
-                type: 'asset/resource',
-                generator: {
-                    filename: 'assets/styles/[name].[contenthash][ext]'
-                }
-            },
+            // {
+            //     test: /\.css$/,
+            //     type: 'asset/resource',
+            //     generator: {
+            //         filename: 'assets/styles/[name].[contenthash][ext]'
+            //     }
+            // },
             {
                 test: /\.scss$/,
                 type: 'asset/resource',
                 use: ['sass-loader'],
                 generator: {
-                    filename: './assets/styles/[name].[contenthash].css'
+                    filename: 'assets/styles/[name].[contenthash].css'
                 }
             },
             {
