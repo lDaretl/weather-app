@@ -1,0 +1,270 @@
+@import "./card-1/card-1";
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: 100%;
+
+  @media (max-width: $bptab) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (max-width: $bpMobL) {
+    gap: 10px;
+  }
+
+  &__item {
+    background: #6c67d0a8;
+    border-radius: 10px;
+    position: relative;
+  }
+
+  &__item--1 {
+
+  }
+
+  &__box {
+    width: 100%;
+    max-width: 900px;
+    max-height: 565px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &.cards__box--1 {
+      max-width: 565px;
+    }
+
+    &.cards__box--2 {
+      @media (min-width: $bptab) {
+        overflow: hidden;
+      }
+    }
+  }
+
+  &__item--2 > .list-hourly {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    @media (min-width: $bptab) {
+      gap: 15%;
+      & > .item:first-child{
+        margin-left: calc(220px + 25%);
+      }
+    }
+
+    @media (min-width: 1150px) {
+      gap: 9%;
+      & > .item:first-child{
+        margin-left: calc(10px + 26%);
+      }
+    }
+
+    @media (min-width: 1270px) {
+      gap: 0;
+      & > .item:first-child{
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__item--3 > .list-daily {
+    height: 100%;
+
+    & .item__img > img {
+      margin-top: -7px;
+    }
+
+    @media (min-width: $bptab) {
+      gap: 9%;
+      & > .item:first-child{
+        margin-left: calc(170px + 25%);
+      }
+    }
+
+    @media (min-width: 1150px) {
+      gap: 6%;
+      & > .item:first-child{
+        margin-left: calc(50px + 15%);
+      }
+    }
+
+    @media (min-width: 1270px) {
+      gap: 0;
+      & > .item:first-child{
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.card {
+  &__blocks {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  &__blocks--1 {
+    & > img {
+      height: 300px;
+      position: absolute;
+      top: -120px;
+      left: -120px;
+    }
+  }
+}
+
+.block {
+  @media (min-width: $bptab) {
+    gap: 29px;
+  }
+}
+
+.list {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  width: 100%;
+  position: relative;
+  padding: 15px;
+
+  &__not-found {
+    user-select: none;
+    padding: 7px 40px;
+    transition: all .3s ease-out;
+    z-index: 10;
+  }
+
+  @media (max-width: $bpMobL) {
+    overflow-x: scroll;
+    gap: 0;
+  }
+
+  &.list-hourly {
+    @media (max-width: 600px) {
+      gap: 8vw;
+      justify-content: space-around;
+    }
+
+    @media (max-width: $bpMobS) {
+      gap: calc(20px + 5vw);
+      padding: 10px 5px;
+    }
+
+    .list__item {
+      @media (max-width: $bpMobL) {
+        padding: 5px;
+      }
+
+      @media (max-width: 600px) {
+        &:first-child {
+          margin-left: calc(125px - 1vw);
+        }
+      }
+
+      @media (max-width: $bpMobS) {
+        &:first-child {
+          margin-left: calc(210px + 7vw);
+        }
+      }
+    }
+  }
+
+  &.list-daily {
+    @media (max-width: 600px) {
+      gap: 5.5vw;
+      justify-content: space-around;
+    }
+
+    @media (max-width: $bpMobS) {
+      gap: 10vw;
+      padding: 10px 5px;
+    }
+
+    .list__item {
+      @media (max-width: $bpMobL) {
+        padding: 5px;
+      }
+
+      @media (max-width: 600px) {
+        &:first-child {
+          margin-left: calc(107px - 1vw);
+        }
+      }
+
+      @media (max-width: $bpMobS) {
+        &:first-child {
+          margin-left: calc(140px + 25vw);
+        }
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+
+    @media (max-width: $bpMobL) {
+      padding: 5px;
+    }
+  }
+
+  .item {
+    font-size: calc(min(3vw, 16px));
+    gap: 5px;
+
+    &__text {
+      @media (min-width: $bptab) {
+        min-width: 40px;
+      }
+    }
+
+    &__icon {
+      height: 10px;
+    }
+
+    &__img {
+      padding: 15px 0;
+      height: calc(min(100vw, 100px));
+
+      & > img {
+        height: 100%;
+      }
+
+      &.img-day {
+        margin: -15px 0 -30px 0;
+      }
+
+      &.img-hour {
+        margin: -25px 0 -25px 0;
+      }
+    }
+
+    & > :nth-child(3),
+    & > :nth-child(4),
+    & > :nth-child(5),
+    & > :nth-child(6) {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & > img {
+        height: calc(min(4.5vw, 36px));
+      }
+    }
+
+    & > :nth-child(5) {
+      & > img {
+        margin-right: 5px;
+      }
+    }
+  }
+}

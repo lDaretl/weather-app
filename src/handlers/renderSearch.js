@@ -1,4 +1,4 @@
-import DisplayController from "../tools/DisplayController";
+import DisplayController from "../shared/tools/DisplayController";
 
 const renderSearch = (state) => {
     if (state) {

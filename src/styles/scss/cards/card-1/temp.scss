@@ -1,0 +1,49 @@
+.temp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__text {
+    font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 5px;
+    display: flex;
+  }
+
+  &__number {
+    font-size: calc(min(12vw, 88px));
+  }
+
+  &__img {
+    height: calc(min(14vw, 150px));
+    margin: -6vw -5vw;
+    
+    @media (min-width: $bptab) {
+      margin: -61px -51px;
+    }
+  }
+}
+
+&__apparent-temp {
+  align-self: center;
+  font-size: 1em;
+}
+
+.apparent-temp {
+  text-align: center;
+  &__text {
+    font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: calc(min(3vw, 18px));
+    color: #c2bff4;
+    margin: 0 0 5px 0;
+  }
+  &__temp {
+    font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: calc(min(3vw, 18px));
+    color: #fff;
+    letter-spacing: 1px;
+  }
+}

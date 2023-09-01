@@ -4,11 +4,12 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
+    mode: 'development',
     entry: {
         main: './index.js'
     },
     output: {
-        filename: './js/[name].[contenthash].js',
+        filename: './js/[name].[contenthash:8].js',
         path: path.resolve(__dirname, 'public'),
         clean: true,
     },
@@ -18,6 +19,22 @@ module.exports = {
         }),
         //new CleanWebpackPlugin()
     ],
+    devServer: {
+        static: {
+            directory: path.join(__dirname, 'src/assets'),
+        },
+        watchFiles: {
+            paths: ['src/**/*.*'],
+            options: {
+                usePolling: true,
+            },
+        },
+        hot: false,
+        compress: true,
+        open: false,
+        server: 'https',
+        port: 443
+    },
     module: {
         rules: [
             {
@@ -36,7 +53,7 @@ module.exports = {
                 type: 'asset/resource',
                 use: ['sass-loader'],
                 generator: {
-                    filename: 'assets/styles/[name].[contenthash].css'
+                    filename: 'assets/styles/[name].[contenthash:8].css'
                 }
             },
             {
@@ -45,7 +62,7 @@ module.exports = {
                 generator: {
                     filename: 'assets/images/[name][ext]'
                 }
-            },
+            }
         ]
     }
 }

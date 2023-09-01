@@ -1,0 +1,97 @@
+.cards__item--1 .block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  aspect-ratio: 1 / 1;
+  position: relative;
+
+  @media (max-width: $bpMobS) {
+    padding: 15px;
+  }
+
+  &__top {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  &__mid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (max-width: $bpMobS) {
+      gap: 10px;
+    }
+
+    .block__weather {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__day-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    min-width: 80px;
+    font-size: calc(min(3vw, 18px));
+  }
+
+  @import "city";
+
+  &__weather-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .description {
+    &__text {
+      font-size: calc(min(4vw, 24px));
+    }
+
+    &__img {
+      width: calc(min(20vw, 150px));
+      margin: 0 auto;
+    }
+  }
+
+  @import "temp";
+
+  &__maxmin {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+    padding: 0 0 0 20px;
+  }
+
+  .m-temp {
+    display: flex;
+    justify-content: center;
+
+    &__text {
+      display: inline-flex;
+      align-self: center;
+      font-size: calc(min(3.5vw, 18px));
+    }
+
+    &__img {
+      height: calc(min(9vw, 50px));
+    }
+  }
+
+  @import "props";
+}
+
+.block__day-name {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  font-size: calc(min(6vw, 1.7em));
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -10,346 +10,344 @@
 </head>
 
 <body>
-    <main class="wrapper">
-        <div class="background">
-            <img src="assets/Background.png" alt="background">
-            <div class="blur">
-                
+<div class="wrapper">
+    <div class="background">
+        <img src="assets/backgrounds/Background.png" alt="background">
+    </div>
+    <main class="main">
+        <div class="main__container">
+            <div class="main__cards cards">
+                <div class="cards__box cards__box--1">
+                    <section class="cards__item card cards__item--1">
+                        <div class="card__block block">
+                            <div class="block__top">
+                                <div class="block__day-info day-info">
+                                    <p class="day-info__time" id="dayTime"> - </p>
+                                    <p class="day-info__date" id="dayDate"> - </p>
+                                </div>
+                                <div class="block__city city">
+                                    <img src="assets/icons/pin-static.gif" alt="pin" id="pinImg">
+                                    <div class="city__box box" id="cityNow">
+                                        <p class="box__name" id="cityName"></p>
+                                        <form id="searchForm">
+                                            <input focus data-city="" class="box__input" type="search"
+                                                   id="cityInput" placeholder="Название города...">
+                                        </form>
+                                        <div class="box__list cities-list hide" id="cityList"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="block__mid">
+                                <div class="block__day-name" id="dayName"> -</div>
+                                <div class="block__weather">
+                                    <div class="block__weather-description description">
+                                        <img src="assets/weather-icons/common/not-available.svg"
+                                             alt="Current weather icon" class="description__img" id="nowIcon">
+                                        <p class="description__text" id="weatherDescription"> - </p>
+                                    </div>
+                                    <div class="block__temp temp">
+                                        <p class="temp__text">
+                                            <span class="temp__number" id="currentTemp">-</span>
+                                            <img src="assets/weather-icons/common/celsius.svg" class="temp__img"
+                                                 alt="degree icon">
+                                        </p>
+                                    </div>
+                                    <div class="block__maxmin">
+                                        <p class="block__max-temp m-temp">
+                                            <img src="./assets/weather-icons/common/thermometer-warm.svg"
+                                                 alt="Max temperature icon" class="m-temp__img">
+                                            <span class="m-temp__text" id="maxTempDay"> - </span>
+                                        </p>
+                                        <p class="block__min-temp m-temp">
+                                            <img src="./assets/weather-icons/common/thermometer-cold.svg"
+                                                 alt="Min temperature icon" class="m-temp__img">
+                                            <span class="m-temp__text" id="minTempDay"> - </span>
+                                        </p>
+                                    </div>
+
+
+                                </div>
+                                <div class="block__apparent-temp apparent-temp">
+                                    <p class="apparent-temp__text">Ощущается как:</p>
+                                    <p class="apparent-temp__temp" id="apparentTemp"> - </p>
+                                </div>
+                            </div>
+                            <div class="block__bottom">
+                                <div class="block__properties properties">
+                                    <div class="properties__wind subblock">
+                                        <div class="subblock__pic"><img src="assets/weather-icons/common/wind.svg"
+                                                                        alt="wind icon">
+                                        </div>
+                                        <div class="subblock__text">
+                                            <p class="subblock__name">Ветер</p>
+                                            <p class="subblock__num" id="currentWind">-</p>
+                                        </div>
+                                    </div>
+                                    <div class="properties__humidity subblock">
+                                        <div class="subblock__pic"><img
+                                                src="assets/weather-icons/common/raindrops.svg"
+                                                alt="raindrops icon">
+                                        </div>
+                                        <div class="subblock__text">
+                                            <p class="subblock__name">Осадки</p>
+                                            <p class="subblock__num" id="rainPosib">-</p>
+                                        </div>
+                                    </div>
+                                    <div class="properties__pressure subblock">
+                                        <div class="subblock__pic">
+                                            <img src="assets/weather-icons/common/thermometer-glass.svg"
+                                                 alt="thermometer icon">
+                                        </div>
+                                        <div class="subblock__text">
+                                            <p class="subblock__name">Давление</p>
+                                            <p class="subblock__num" id="pressure">-</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="cards__box cards__box--2">
+                    <section class="cards__item card cards__item--2">
+                        <ul class="block__list list list-hourly" id="hours">
+                            <li class="list__item item" id="hour1">
+                                <div class="item__time">-</div>
+                                <div class="item__img img-hour"><img src="assets/weather-icons/common/not-available.svg"
+                                                                     alt="hourly weather image"></div>
+                                <div class="item__temp">
+                                    <img class="item__icon" src="assets/weather-icons/common/thermometer-glass.svg"
+                                         alt="temperature icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__wind">
+                                    <img class="item__icon" src="assets/weather-icons/common/wind.svg"
+                                         alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__rain">
+                                    <img class="item__icon" src="assets/weather-icons/common/raindrops.svg"
+                                         alt="wind icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                            </li>
+                            <li class="list__item item" id="hour2">
+                                <div class="item__time">-</div>
+                                <div class="item__img img-hour"><img src="assets/weather-icons/common/not-available.svg"
+                                                                     alt="hourly weather image"></div>
+                                <div class="item__temp">
+                                    <img class="item__icon" src="assets/weather-icons/common/thermometer-glass.svg"
+                                         alt="temperature icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__wind">
+                                    <img class="item__icon" src="assets/weather-icons/common/wind.svg"
+                                         alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__rain">
+                                    <img class="item__icon" src="assets/weather-icons/common/raindrops.svg"
+                                         alt="wind icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                            </li>
+                            <li class="list__item item" id="hour3">
+                                <div class="item__time">-</div>
+                                <div class="item__img img-hour"><img src="assets/weather-icons/common/not-available.svg"
+                                                                     alt="hourly weather image"></div>
+                                <div class="item__temp">
+                                    <img class="item__icon" src="assets/weather-icons/common/thermometer-glass.svg"
+                                         alt="temperature icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__wind">
+                                    <img class="item__icon" src="assets/weather-icons/common/wind.svg"
+                                         alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__rain">
+                                    <img class="item__icon" src="assets/weather-icons/common/raindrops.svg"
+                                         alt="wind icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                            </li>
+                            <li class="list__item item" id="hour4">
+                                <div class="item__time">-</div>
+                                <div class="item__img img-hour"><img src="assets/weather-icons/common/not-available.svg"
+                                                                     alt="hourly weather image"></div>
+                                <div class="item__temp">
+                                    <img class="item__icon" src="assets/weather-icons/common/thermometer-glass.svg"
+                                         alt="temperature icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__wind">
+                                    <img class="item__icon" src="assets/weather-icons/common/wind.svg"
+                                         alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__rain">
+                                    <img class="item__icon" src="assets/weather-icons/common/raindrops.svg"
+                                         alt="wind icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                            </li>
+                            <li class="list__item item" id="hour5">
+                                <div class="item__time">-</div>
+                                <div class="item__img img-hour"><img src="assets/weather-icons/common/not-available.svg"
+                                                                     alt="hourly weather image"></div>
+                                <div class="item__temp">
+                                    <img class="item__icon" src="assets/weather-icons/common/thermometer-glass.svg"
+                                         alt="temperature icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__wind">
+                                    <img class="item__icon" src="assets/weather-icons/common/wind.svg"
+                                         alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__rain">
+                                    <img class="item__icon" src="assets/weather-icons/common/raindrops.svg"
+                                         alt="wind icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="cards__item card cards__item--3">
+                        <ul class="block__items list list-daily" id="weatherDaily">
+                            <li class="list__item item" id="day1">
+                                <div class="item__text">-</div>
+                                <div class="item__img img-day"><img src="assets/weather-icons/common/not-available.svg"
+                                                                    alt="Daily weather image" id="dayIcon1">
+                                </div>
+                                <div class="item__temp-max"><img class="item__icon"
+                                                                 src="assets/weather-icons/common/thermometer-glass.svg"
+                                                                 alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__temp-min"><img class="item__icon"
+                                                                 src="assets/weather-icons/common/thermometer-glass.svg"
+                                                                 alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__wind"><img class="item__icon"
+                                                             src="assets/weather-icons/common/wind.svg"
+                                                             alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__rain"><img class="item__icon"
+                                                             src="assets/weather-icons/common/raindrops.svg"
+                                                             alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                            </li>
+                            <li class="list__item item" id="day2">
+                                <div class="item__text">-</div>
+                                <div class="item__img img-day"><img src="assets/weather-icons/common/not-available.svg"
+                                                                    alt="Daily weather image" id="dayIcon2">
+                                </div>
+                                <div class="item__temp-max"><img class="item__icon"
+                                                                 src="assets/weather-icons/common/thermometer-glass.svg"
+                                                                 alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__temp-min"><img class="item__icon"
+                                                                 src="assets/weather-icons/common/thermometer-glass.svg"
+                                                                 alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__wind"><img class="item__icon"
+                                                             src="assets/weather-icons/common/wind.svg" alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__rain"><img class="item__icon"
+                                                             src="assets/weather-icons/common/raindrops.svg"
+                                                             alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                            </li>
+                            <li class="list__item item" id="day3">
+                                <div class="item__text">-</div>
+                                <div class="item__img img-day"><img src="assets/weather-icons/common/not-available.svg"
+                                                                    alt="Daily weather image" id="dayIcon3">
+                                </div>
+                                <div class="item__temp-max"><img class="item__icon"
+                                                                 src="assets/weather-icons/common/thermometer-glass.svg"
+                                                                 alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__temp-min"><img class="item__icon"
+                                                                 src="assets/weather-icons/common/thermometer-glass.svg"
+                                                                 alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__wind"><img class="item__icon"
+                                                             src="assets/weather-icons/common/wind.svg" alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__rain"><img class="item__icon"
+                                                             src="assets/weather-icons/common/raindrops.svg"
+                                                             alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                            </li>
+                            <li class="list__item item" id="day4">
+                                <div class="item__text">-</div>
+                                <div class="item__img img-day"><img src="assets/weather-icons/common/not-available.svg"
+                                                                    alt="Daily weather image" id="dayIcon4">
+                                </div>
+                                <div class="item__temp-max"><img class="item__icon"
+                                                                 src="assets/weather-icons/common/thermometer-glass.svg"
+                                                                 alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__temp-min"><img class="item__icon"
+                                                                 src="assets/weather-icons/common/thermometer-glass.svg"
+                                                                 alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__wind"><img class="item__icon"
+                                                             src="assets/weather-icons/common/wind.svg" alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__rain"><img class="item__icon"
+                                                             src="assets/weather-icons/common/raindrops.svg"
+                                                             alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                            </li>
+                            <li class="list__item item" id="day5">
+                                <div class="item__text">-</div>
+                                <div class="item__img img-day"><img src="assets/weather-icons/common/not-available.svg"
+                                                                    alt="Daily weather image" id="dayIcon5">
+                                </div>
+                                <div class="item__temp-max"><img class="item__icon"
+                                                                 src="assets/weather-icons/common/thermometer-glass.svg"
+                                                                 alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__temp-min"><img class="item__icon"
+                                                                 src="assets/weather-icons/common/thermometer-glass.svg"
+                                                                 alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__wind"><img class="item__icon"
+                                                             src="assets/weather-icons/common/wind.svg" alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                                <div class="item__rain"><img class="item__icon"
+                                                             src="assets/weather-icons/common/raindrops.svg"
+                                                             alt="rain icon">
+                                    <div class="item__text">-</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
             </div>
         </div>
-        <div class="container">
-            <div class="cards">
-                <div class="cards__item card cards__item--1">
-                    <div class="card__blur">
-                        <div class="card__blocks block card__blocks--1">
-                            <img src="assets/weather-icons/common/not-available.svg" alt="Weather Image"
-                                id="nowIcon">
-                            <div class="block__day-name" id="dayName">
-                                -
-                            </div>
-                            <div class="block__city city">
-                                <img src="assets/icons/pin-static.gif" alt="pin" id="pinImg">
-                                <div class="city__box box" id="cityNow">
-                                    <div class="box__name" id="cityName"></div>
-                                    <form id="searchForm">
-                                        <input focus data-city="" class="box__input" type="search" id="cityInput"
-                                            placeholder="Название города...">
-                                    </form>
-                                    <div class="box__list list hide" id="cityList"></div>
-                                </div>
-                            </div>
-                            <div class="block__weather-description" id="weatherDescription">
-                                -
-                            </div>
-                            <div class="block__temp temp">
-                                <div class="temp__number" id="currentTemp">-</div>
-                                <img src="assets/weather-icons/common/celsius.svg" alt="degree icon">
-                            </div>
-                            <div class="block__max-min max-min">
-                                <div class="max-min__max" id="maxTempDay">-</div>
-                                <div class="max-min__min" id="minTempDay">-</div>
-                            </div>
-                            <div class="block__apparent-temp apparent-temp">
-                                <div class="apparent-temp__text">Ощущается как:</div>
-                                <div class="apparent-temp__temp" id="apparentTemp"></div>
-                            </div>
-                            <div class="block__properties properties">
-                                <div class="properties__wind subblock">
-                                    <div class="subblock__pic"><img src="assets/weather-icons/common/wind.svg"
-                                            alt="wind icon">
-                                    </div>
-                                    <div class="subblock__text">
-                                        <div class="subblock__name"><span>Ветер</span></div>
-                                        <div class="subblock__num" id="currentWind">-</div>
-                                    </div>
-                                </div>
-                                <div class="properties__humidity subblock">
-                                    <div class="subblock__pic"><img
-                                            src="assets/weather-icons/common/raindrops.svg"
-                                            alt="raindrops icon">
-                                    </div>
-                                    <div class="subblock__text">
-                                        <div class="subblock__name"><span>Осадки</span></div>
-                                        <div class="subblock__num" id="rainPosib">-</div>
-                                    </div>
-                                </div>
-                                <div class="properties__pressure subblock">
-                                    <div class="subblock__pic">
-                                        <img src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="thermometer icon">
-                                        <img src="assets/weather-icons/common/pressure-high.svg"
-                                            alt="pressure icon">
-                                    </div>
-                                    <div class="subblock__text">
-                                        <div class="subblock__name"><span>Атм. давление</span></div>
-                                        <div class="subblock__num" id="pressure">-</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cards__item card cards__item--2">
-                    <div class="card__blur block">
-                        <div class="block__items items">
-                            <div class="items__cont" id="hours">
-                                <div class="items__item item" id="hour1">
-                                    <div class="item__time">-</div>
-                                    <div class="item__img"><img
-                                            src="assets/weather-icons/common/not-available.svg"
-                                            alt="hourly weather image"></div>
-                                    <div class="item__temp">
-                                        <img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="temperature icon">
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__wind">
-                                        <img class="item__icon" src="assets/weather-icons/common/wind.svg"
-                                            alt="rain icon">
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__rain">
-                                        <img class="item__icon" src="assets/weather-icons/common/raindrops.svg"
-                                            alt="wind icon">
-                                        <div class="item__text">-</div>
-                                    </div>
-                                </div>
-                                <div class="items__item item" id="hour2">
-                                    <div class="item__time">-</div>
-                                    <div class="item__img"><img
-                                            src="assets/weather-icons/common/not-available.svg"
-                                            alt="hourly weather image"></div>
-                                    <div class="item__temp">
-                                        <img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="temperature icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__wind">
-                                        <img class="item__icon" src="assets/weather-icons/common/wind.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__rain">
-                                        <img class="item__icon" src="assets/weather-icons/common/raindrops.svg"
-                                            alt="wind icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                </div>
-                                <div class="items__item item" id="hour3">
-                                    <div class="item__time">-</div>
-                                    <div class="item__img"><img
-                                            src="assets/weather-icons/common/not-available.svg"
-                                            alt="hourly weather image"></div>
-                                    <div class="item__temp">
-                                        <img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="temperature icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__wind">
-                                        <img class="item__icon" src="assets/weather-icons/common/wind.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__rain">
-                                        <img class="item__icon" src="assets/weather-icons/common/raindrops.svg"
-                                            alt="wind icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                </div>
-                                <div class="items__item item" id="hour4">
-                                    <div class="item__time">-</div>
-                                    <div class="item__img"><img
-                                            src="assets/weather-icons/common/not-available.svg"
-                                            alt="hourly weather image"></div>
-                                    <div class="item__temp">
-                                        <img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="temperature icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__wind">
-                                        <img class="item__icon" src="assets/weather-icons/common/wind.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__rain">
-                                        <img class="item__icon" src="assets/weather-icons/common/raindrops.svg"
-                                            alt="wind icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                </div>
-                                <div class="items__item item" id="hour5">
-                                    <div class="item__time">-</div>
-                                    <div class="item__img"><img
-                                            src="assets/weather-icons/common/not-available.svg"
-                                            alt="hourly weather image"></div>
-                                    <div class="item__temp">
-                                        <img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="temperature icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__wind">
-                                        <img class="item__icon" src="assets/weather-icons/common/wind.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__rain">
-                                        <img class="item__icon" src="assets/weather-icons/common/raindrops.svg"
-                                            alt="wind icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cards__item card cards__item--3">
-                    <div class="card__blur block">
-                        <!--<div class="card__blocks block card__blocks--3" > -->
-                        <div class="block__items items">
-                            <div class="items__cont" id="weatherDaily">
-                                <div class="items__item item" id="day1">
-                                    <div class="item__text">-</div>
-                                    <div class="item__img"><img
-                                            src="assets/weather-icons/common/not-available.svg"
-                                            alt="Daily weather image" id="dayIcon1">
-                                    </div>
-                                    <div class="item__temp-max"><img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__temp-min"><img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__wind"><img class="item__icon"
-                                            src="assets/weather-icons/common/wind.svg" alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__rain"><img class="item__icon"
-                                            src="assets/weather-icons/common/raindrops.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                </div>
-                                <div class="items__item item" id="day2">
-                                    <div class="item__text">-</div>
-                                    <div class="item__img"><img
-                                            src="assets/weather-icons/common/not-available.svg"
-                                            alt="Daily weather image" id="dayIcon2">
-                                    </div>
-                                    <div class="item__temp-max"><img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__temp-min"><img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__wind"><img class="item__icon"
-                                            src="assets/weather-icons/common/wind.svg" alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__rain"><img class="item__icon"
-                                            src="assets/weather-icons/common/raindrops.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                </div>
-                                <div class="items__item item" id="day3">
-                                    <div class="item__text">-</div>
-                                    <div class="item__img"><img
-                                            src="assets/weather-icons/common/not-available.svg"
-                                            alt="Daily weather image" id="dayIcon3">
-                                    </div>
-                                    <div class="item__temp-max"><img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__temp-min"><img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__wind"><img class="item__icon"
-                                            src="assets/weather-icons/common/wind.svg" alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__rain"><img class="item__icon"
-                                            src="assets/weather-icons/common/raindrops.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                </div>
-                                <div class="items__item item" id="day4">
-                                    <div class="item__text">-</div>
-                                    <div class="item__img"><img
-                                            src="assets/weather-icons/common/not-available.svg"
-                                            alt="Daily weather image" id="dayIcon4">
-                                    </div>
-                                    <div class="item__temp-max"><img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__temp-min"><img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__wind"><img class="item__icon"
-                                            src="assets/weather-icons/common/wind.svg" alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__rain"><img class="item__icon"
-                                            src="assets/weather-icons/common/raindrops.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                </div>
-                                <div class="items__item item" id="day5">
-                                    <div class="item__text">-</div>
-                                    <div class="item__img"><img
-                                            src="assets/weather-icons/common/not-available.svg"
-                                            alt="Daily weather image" id="dayIcon5">
-                                    </div>
-                                    <div class="item__temp-max"><img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__temp-min"><img class="item__icon"
-                                            src="assets/weather-icons/common/thermometer-glass.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__wind"><img class="item__icon"
-                                            src="assets/weather-icons/common/wind.svg" alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                    <div class="item__rain"><img class="item__icon"
-                                            src="assets/weather-icons/common/raindrops.svg"
-                                            alt="rain icon"></img>
-                                        <div class="item__text">-</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </main>     
+    </main>
+</div>
 </body>
 
 </html>

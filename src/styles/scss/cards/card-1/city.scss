@@ -1,0 +1,123 @@
+&__city {
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+
+  font-family: Lato, Roboto, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  color: #c2bff4;
+}
+
+.city {
+  & > img {
+    height: calc(min(9vw, 40px));
+    margin: 0 10px 0 0;
+    padding: 0 0 5px 0;
+    cursor: pointer;
+    transition: transform .3s ease-out 0s;
+
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+
+  &__box {
+    max-width: 205px;
+    text-align: center;
+  }
+
+  .box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: calc(min(3vw, 16px));
+
+    &__list {
+      top: 0;
+      left: 0;
+      background: #fefefe;
+      z-index: 10;
+
+      &.cities-list {
+        position: absolute;
+        border-radius: 7px;
+        padding-top: 22px;
+        top: 15px;
+        transition: opcacity 5s ease-out;
+        height: auto;
+        opacity: 1;
+
+        &.hide {
+          height: 0;
+          opacity: 0;
+        }
+
+        :not(:last-child) {
+          border-bottom: solid 1px #7a7a7a;
+          border-inline: solid 5px #fff;
+        }
+
+        .cities-list__item {
+          min-height: 50px;
+          width: inherit;
+          padding: 15px 10px;
+          transition: all .3s ease-out;
+          color: #353a6d;
+          background: #fefefe;
+          z-index: 11;
+          border-radius: 7px;
+          font-weight: normal;
+
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+            box-shadow: inset 0 0 5px 1px #6c67d0a8;
+            border: none;
+          }
+        }
+      }
+
+      &__not-found {
+        user-select: none;
+        padding: 7px 5px;
+        transition: all .3s ease-out;
+        color: #000;
+        background: #ffffff;
+        z-index: 10;
+        border: 1px groove #000000;
+        border-radius: 7px;
+        font-weight: normal;
+      }
+    }
+
+    &__name {
+      transition: transform 0.2s ease-out;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+    }
+
+    &__input {
+      max-width: 205px;
+      height: 30px;
+      padding-left: 10px;
+      border: 1px solid #bdbdbd;
+      border-radius: 7px;
+      font-size: inherit;
+      color: #5c63ad;
+      position: relative;
+      z-index: 15;
+
+      &:focus {
+        outline-style: groove;
+        outline-color: blue;
+      }
+
+      &::placeholder {
+        font-style: italic;
+      }
+    }
+  }
+}

@@ -1,18 +1,18 @@
-import DisplayController from "../tools/DisplayController"
-import GetData from "../tools/GetData";
-import Parser from "../tools/Parser";
+import DisplayController from "../shared/tools/DisplayController"
+import { DataProvider } from "../shared/providers";
+import Parser from "../shared/tools/Parser";
 
 const renderList = async (state) => {
     if (state) {
-        const citiesData = await ((async function getCitiesData() {
+        const citiesData = await (async function getCitiesData() {
             const city = cityInput.value.trim()
             if (city !== '') {
-                const data = await GetData.getCityData(city);
-                return data ? data : undefined
+                const data = await DataProvider.getCitiesData(city);
+                return data ? data : null
             } else {
-                return undefined
+                return null
             }
-        })())
+        })()
 
         // fill HTML list of cities
         ;(function fillList(data) {
@@ -23,7 +23,8 @@ const renderList = async (state) => {
             if (data) {
                 const citiesArray = Parser.parseListOfCities(data)
                 const htmlList = citiesArray.map((city, index) => {
-                    return `<div class="list__item" id="itemCity${index}">${city[0]}, ${city[1] ? city[1] + ', ' : ''}${city[2]}</div>`
+                    console.log(city)
+                    return `<p data-id="${index}" class="cities-list__item" id="itemCity${index}">${city[0]}${ city[1] ? ', ' + city[1] : ''}</p>`
                 }).join('')
 
                 if (!(htmlList === cityList.innerHTML)) {
@@ -34,7 +35,7 @@ const renderList = async (state) => {
                 clearList()
                 if (cityInput.value) {
                     clearList()
-                    cityList.insertAdjacentHTML("beforeend", `<div class="list__not-found" id="itemCityX">Город не найден :(</div>`)
+                    cityList.insertAdjacentHTML("beforeend", `<p class="list__not-found" id="itemCityX">Город не найден</p>`)
                 }
             }
         })(citiesData)
