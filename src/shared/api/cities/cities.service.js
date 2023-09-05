@@ -1,4 +1,4 @@
-const username = "Daret";
+import username from "../../../geonamesUsername";
 
 export const getCitiesByName = async (name) => {
     try {
