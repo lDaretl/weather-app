@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="./styles/scss/index.scss">
+    <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -30,8 +31,9 @@
                                     <div class="city__box box" id="cityNow">
                                         <p class="box__name" id="cityName"></p>
                                         <form id="searchForm">
-                                            <input focus data-city="" class="box__input" type="search"
+                                            <input data-city="" class="box__input" type="search"
                                                    id="cityInput" placeholder="Название города...">
+                                            <label for="cityInput"></label>
                                         </form>
                                         <div class="box__list cities-list hide" id="cityList"></div>
                                     </div>

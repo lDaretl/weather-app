@@ -1,6 +1,5 @@
 export default class Parser {
     static parseFullCityName(data) {
-        console.log(data)
         return [data.name, (data.name === data.admin1) ? '' : data.admin1]
     }
 

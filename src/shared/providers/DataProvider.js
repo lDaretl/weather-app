@@ -27,7 +27,6 @@ export class DataProvider {
             }
             return prev
         }, 1)
-        console.log(closest)
         return [closest.placeName.match(/\W/g).join("").trim(), closest.adminName1];
     }
 
